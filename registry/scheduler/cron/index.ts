@@ -27,6 +27,10 @@ export default function createCronScheduler(config: CronSchedulerConfig): Schedu
     return `job_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
   }
 
+  function makeJobContext(stored: StoredJob): { jobId: string; runCount: number; lastRun?: Date; agent: any; sendMessage: () => Promise<void> } {
+    return { jobId: stored.id, runCount: stored.runCount, lastRun: stored.lastRun, agent: null as any, sendMessage: async () => {} };
+  }
+
   return {
     name: "scheduler-cron",
 
@@ -60,27 +64,13 @@ export default function createCronScheduler(config: CronSchedulerConfig): Schedu
             stored.runCount++;
             stored.lastRun = new Date();
             try {
-              await job.handler({
-                jobId: id,
-                runCount: stored.runCount,
-                lastRun: stored.lastRun,
-                agent: null as any,
-                sendMessage: async () => {},
-              });
+              await job.handler(makeJobContext(stored));
             } catch (err) {
               console.error(`Job ${id} failed:`, err);
             }
           },
           { scheduled: false, timezone },
         );
-      }
-
-      if (job.interval) {
-        // Interval-based jobs are started via start()
-      }
-
-      if (job.once) {
-        // Once jobs are scheduled via start()
       }
 
       jobs.set(id, stored);
@@ -144,13 +134,7 @@ export default function createCronScheduler(config: CronSchedulerConfig): Schedu
         stored.runCount++;
         stored.lastRun = new Date();
         try {
-          await definition.handler({
-            jobId: id,
-            runCount: stored.runCount,
-            lastRun: stored.lastRun,
-            agent: null as any,
-            sendMessage: async () => {},
-          });
+          await definition.handler(makeJobContext(stored));
         } catch (err) {
           console.error(`Job ${id} failed:`, err);
         }
@@ -164,13 +148,7 @@ export default function createCronScheduler(config: CronSchedulerConfig): Schedu
           stored.runCount++;
           stored.lastRun = new Date();
           try {
-            await definition.handler({
-              jobId: id,
-              runCount: stored.runCount,
-              lastRun: stored.lastRun,
-              agent: null as any,
-              sendMessage: async () => {},
-            });
+            await definition.handler(makeJobContext(stored));
           } catch (err) {
             console.error(`Job ${id} failed:`, err);
           }

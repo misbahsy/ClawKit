@@ -1,7 +1,6 @@
 import type { Tool, ToolContext, ToolResult } from "clawkit:types";
 
 export interface WebSearchToolConfig {
-  workspaceDir?: string;
   provider?: "brave" | "tavily" | "serpapi";
 }
 

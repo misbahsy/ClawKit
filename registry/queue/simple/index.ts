@@ -8,7 +8,6 @@ export interface SimpleQueueConfig {
 export default function createSimpleQueue(config: SimpleQueueConfig): Queue {
   const queue: QueuedMessage[] = [];
   let handler: ((msg: QueuedMessage) => Promise<void>) | null = null;
-  let processing = false;
   let concurrency = config.concurrency ?? 1;
   let activeCount = 0;
 

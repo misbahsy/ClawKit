@@ -34,7 +34,6 @@ export default function createBashTool(config: BashToolConfig): Tool {
         const child = spawn("sh", ["-c", args.command], {
           cwd,
           env: { ...process.env },
-          timeout,
         });
 
         child.stdout.on("data", (data: Buffer) => {

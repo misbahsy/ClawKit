@@ -6,6 +6,7 @@ import ora from "ora";
 import {
   readRegistry,
   readComponentMeta,
+  getInstalledComponents,
   type ComponentMeta,
 } from "../utils/registry.js";
 import { copyComponent } from "../utils/scaffold.js";
@@ -165,16 +166,3 @@ function regenerateClaudeMd(projectDir: string): void {
   writeFileSync(claudeMdPath, newContent, "utf-8");
 }
 
-function getInstalledComponents(projectDir: string): string[] {
-  const registry = readRegistry();
-  const installed: string[] = [];
-
-  for (const [name, entry] of Object.entries(registry)) {
-    const compDir = resolve(projectDir, "components", entry.path);
-    if (existsSync(compDir)) {
-      installed.push(name);
-    }
-  }
-
-  return installed;
-}

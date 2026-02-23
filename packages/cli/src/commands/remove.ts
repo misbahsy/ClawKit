@@ -2,7 +2,7 @@ import { existsSync, readFileSync, writeFileSync, rmSync } from "node:fs";
 import { resolve } from "node:path";
 import chalk from "chalk";
 import ora from "ora";
-import { readRegistry, readComponentMeta } from "../utils/registry.js";
+import { readRegistry, readComponentMeta, getInstalledComponents } from "../utils/registry.js";
 import { removeComponentFromEntry } from "../utils/entry.js";
 import { generateClaudeMd, preserveUserNotes } from "../utils/claude-md.js";
 
@@ -67,13 +67,3 @@ export async function removeCommand(componentName: string): Promise<void> {
   }
 }
 
-function getInstalledComponents(projectDir: string): string[] {
-  const registry = readRegistry();
-  const installed: string[] = [];
-  for (const [name, entry] of Object.entries(registry)) {
-    if (existsSync(resolve(projectDir, "components", entry.path))) {
-      installed.push(name);
-    }
-  }
-  return installed;
-}

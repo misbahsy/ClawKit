@@ -26,15 +26,10 @@ export function generateClaudeMd(name: string, components: ComponentMeta[]): str
     architecture.push(`- **${label}:** ${comp.description}`);
   }
 
-  const channels = components.filter((c) => c.category === "channels");
-  const agents = components.filter((c) => c.category === "agents");
-  const queues = components.filter((c) => c.category === "queue");
-  const prompts = components.filter((c) => c.category === "prompt");
-
-  const channelName = channels[0]?.name ?? "input";
-  const queueName = queues[0]?.name ?? "queue";
-  const promptName = prompts[0]?.name ?? "prompt";
-  const agentName = agents[0]?.name ?? "agent";
+  const channelName = components.find((c) => c.category === "channels")?.name ?? "input";
+  const queueName = components.find((c) => c.category === "queue")?.name ?? "queue";
+  const promptName = components.find((c) => c.category === "prompt")?.name ?? "prompt";
+  const agentName = components.find((c) => c.category === "agents")?.name ?? "agent";
 
   const messageFlow = `${channelName} -> ${queueName} -> ${promptName} -> ${agentName} -> tools -> response -> ${channelName}`;
 

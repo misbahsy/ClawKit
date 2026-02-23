@@ -1,15 +1,8 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 
-// Mock the Anthropic SDK before importing
-vi.mock("@anthropic-ai/sdk", () => {
-  return {
-    default: class MockAnthropic {
-      messages = {
-        stream: vi.fn(),
-      };
-    },
-  };
-});
+vi.mock("@anthropic-ai/sdk", () => ({
+  default: vi.fn(() => ({ messages: { stream: vi.fn() } })),
+}));
 
 import createAnthropicAgent from "../../registry/agents/anthropic/index.js";
 
@@ -29,39 +22,8 @@ describe("agent-anthropic", () => {
     expect(agent.name).toBe("agent-anthropic");
   });
 
-  it("should yield events from run()", async () => {
-    // Mock the stream
-    const Anthropic = (await import("@anthropic-ai/sdk")).default;
-    const mockInstance = new Anthropic();
-
-    const mockStream = {
-      [Symbol.asyncIterator]: async function* () {
-        yield {
-          type: "content_block_delta",
-          delta: { type: "text_delta", text: "Hello " },
-        };
-        yield {
-          type: "content_block_delta",
-          delta: { type: "text_delta", text: "world!" },
-        };
-      },
-      finalMessage: async () => ({
-        stop_reason: "end_turn",
-        content: [{ type: "text", text: "Hello world!" }],
-        usage: {
-          input_tokens: 100,
-          output_tokens: 10,
-        },
-      }),
-    };
-
-    mockInstance.messages.stream = vi.fn().mockReturnValue(mockStream);
-
+  it("should not throw on abort", () => {
     const agent = createAnthropicAgent({});
-    // Replace internal client
-    (agent as any)._client = mockInstance;
-
-    // We test the structure — the real API calls would be integration tests
-    expect(agent.name).toBe("agent-anthropic");
+    expect(() => agent.abort()).not.toThrow();
   });
 });

@@ -39,9 +39,8 @@ export default function createAnthropicAgent(config: AnthropicAgentConfig): Agen
       const anthropicMessages = toAnthropicMessages(messages);
       const anthropicTools = toAnthropicTools(tools);
       let currentMessages = [...anthropicMessages];
-      let continueLoop = true;
 
-      while (continueLoop) {
+      while (true) {
         const stream = client.messages.stream({
           model,
           max_tokens: maxTokens,
@@ -100,7 +99,7 @@ export default function createAnthropicAgent(config: AnthropicAgentConfig): Agen
               cacheWriteTokens: (finalMessage.usage as any).cache_creation_input_tokens,
             },
           };
-          continueLoop = false;
+          return;
         }
       }
     },

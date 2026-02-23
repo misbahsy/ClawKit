@@ -10,7 +10,7 @@ export default function createFileReadTool(config: FileReadToolConfig): Tool {
   function safePath(filePath: string, workspaceDir: string): string {
     const resolved = resolve(workspaceDir, filePath);
     const rel = relative(workspaceDir, resolved);
-    if (rel.startsWith("..") || resolve(resolved) !== resolved && rel.startsWith("..")) {
+    if (rel.startsWith("..")) {
       throw new Error(`Path traversal denied: ${filePath}`);
     }
     return resolved;

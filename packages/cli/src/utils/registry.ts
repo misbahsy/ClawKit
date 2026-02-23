@@ -65,6 +65,17 @@ export function getComponentDir(componentName: string): string {
   return resolve(getRegistryDir(), entry.path);
 }
 
+export function getInstalledComponents(projectDir: string): string[] {
+  const registry = readRegistry();
+  const installed: string[] = [];
+  for (const [name, entry] of Object.entries(registry)) {
+    if (existsSync(resolve(projectDir, "components", entry.path))) {
+      installed.push(name);
+    }
+  }
+  return installed;
+}
+
 export function listComponents(category?: string): Array<{ name: string; entry: RegistryEntry }> {
   const registry = readRegistry();
   return Object.entries(registry)

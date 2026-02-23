@@ -58,20 +58,13 @@ export async function initCommand(name: string, options: { template?: string }):
     : DEFAULT_COMPONENTS;
 
   const metas: ComponentMeta[] = [];
-  for (const compName of componentNames) {
-    try {
-      metas.push(readComponentMeta(compName));
-    } catch (err: any) {
-      spinner.warn(`Skipping ${compName}: ${err.message}`);
-    }
-  }
-
   spinner.text = "Copying components...";
   for (const compName of componentNames) {
     try {
+      metas.push(readComponentMeta(compName));
       copyComponent(compName, projectDir);
     } catch (err: any) {
-      spinner.warn(`Failed to copy ${compName}: ${err.message}`);
+      spinner.warn(`Skipping ${compName}: ${err.message}`);
     }
   }
 

@@ -1,27 +1,17 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
-vi.mock("node-cron", () => {
-  const tasks = new Map<string, { callback: Function; running: boolean }>();
-  let taskCounter = 0;
-
-  return {
-    default: {
-      validate: vi.fn((expr: string) => {
-        // Accept standard cron expressions
-        return /^[\d*\/,-]+(\s+[\d*\/,-]+){4}$/.test(expr);
-      }),
-      schedule: vi.fn((expr: string, callback: Function, options?: any) => {
-        const id = `task_${taskCounter++}`;
-        const task = { callback, running: options?.scheduled ?? true };
-        tasks.set(id, task);
-        return {
-          start: vi.fn(() => { task.running = true; }),
-          stop: vi.fn(() => { task.running = false; }),
-        };
-      }),
-    },
-  };
-});
+vi.mock("node-cron", () => ({
+  default: {
+    validate: vi.fn((expr: string) => /^[\d*\/,-]+(\s+[\d*\/,-]+){4}$/.test(expr)),
+    schedule: vi.fn((_expr: string, _callback: Function, options?: any) => {
+      const running = { value: options?.scheduled ?? true };
+      return {
+        start: vi.fn(() => { running.value = true; }),
+        stop: vi.fn(() => { running.value = false; }),
+      };
+    }),
+  },
+}));
 
 import createCronScheduler from "../../registry/scheduler/cron/index.js";
 
