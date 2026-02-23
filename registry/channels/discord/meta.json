@@ -1,0 +1,19 @@
+{
+  "name": "discord",
+  "category": "channels",
+  "description": "Discord channel via discord.js. Text channels, DMs, threads. Attachments and embeds. Guild support.",
+  "npmDependencies": {
+    "discord.js": "^14.0.0"
+  },
+  "suggests": ["queue-per-group"],
+  "suggestReason": {
+    "queue-per-group": "Per-group queue handles concurrent Discord channel messages gracefully."
+  },
+  "configSchema": {
+    "botToken": { "type": "string", "default": "" },
+    "guildId": { "type": "string", "default": "" }
+  },
+  "importName": "createDiscordChannel",
+  "instanceTemplate": "createDiscordChannel(config.channels?.discord ?? {})",
+  "phase": 3
+}

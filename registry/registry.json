@@ -3,17 +3,30 @@
   "components": {
     "cli": { "category": "channels", "path": "channels/cli" },
     "whatsapp": { "category": "channels", "path": "channels/whatsapp" },
+    "telegram": { "category": "channels", "path": "channels/telegram" },
+    "discord": { "category": "channels", "path": "channels/discord" },
     "agent-anthropic": { "category": "agents", "path": "agents/anthropic" },
+    "agent-openrouter": { "category": "agents", "path": "agents/openrouter" },
+    "agent-ollama": { "category": "agents", "path": "agents/ollama" },
+    "agent-claude-sdk": { "category": "agents", "path": "agents/claude-sdk" },
+    "agent-codex-sdk": { "category": "agents", "path": "agents/codex-sdk" },
     "memory-sqlite": { "category": "memory", "path": "memory/sqlite" },
+    "memory-json": { "category": "memory", "path": "memory/json" },
+    "memory-markdown": { "category": "memory", "path": "memory/markdown" },
     "tool-bash": { "category": "tools", "path": "tools/bash" },
     "tool-file-read": { "category": "tools", "path": "tools/file-read" },
     "tool-file-write": { "category": "tools", "path": "tools/file-write" },
     "tool-web-search": { "category": "tools", "path": "tools/web-search" },
     "queue-simple": { "category": "queue", "path": "queue/simple" },
+    "queue-per-group": { "category": "queue", "path": "queue/per-group" },
     "prompt-simple": { "category": "prompt", "path": "prompt/simple" },
     "prompt-workspace": { "category": "prompt", "path": "prompt/workspace" },
     "sandbox-none": { "category": "sandbox", "path": "sandbox/none" },
+    "sandbox-docker": { "category": "sandbox", "path": "sandbox/docker" },
+    "sandbox-workspace-scoped": { "category": "sandbox", "path": "sandbox/workspace-scoped" },
     "scheduler-cron": { "category": "scheduler", "path": "scheduler/cron" },
-    "skills-mcp-client": { "category": "skills", "path": "skills/mcp-client" }
+    "skills-mcp-client": { "category": "skills", "path": "skills/mcp-client" },
+    "ipc-filesystem": { "category": "ipc", "path": "ipc/filesystem" },
+    "ipc-websocket": { "category": "ipc", "path": "ipc/websocket" }
   }
 }

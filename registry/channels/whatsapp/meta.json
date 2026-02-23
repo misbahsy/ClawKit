@@ -8,9 +8,10 @@
     "pino": "^9.6.0",
     "qrcode-terminal": "^0.12.0"
   },
-  "suggests": ["prompt-workspace"],
+  "suggests": ["prompt-workspace", "queue-per-group"],
   "suggestReason": {
-    "prompt-workspace": "Workspace prompt reads identity files for richer WhatsApp responses."
+    "prompt-workspace": "Workspace prompt reads identity files for richer WhatsApp responses.",
+    "queue-per-group": "Per-group queue handles concurrent group chat messages gracefully."
   },
   "configSchema": {
     "authDir": { "type": "string", "default": "./data/whatsapp-auth" }

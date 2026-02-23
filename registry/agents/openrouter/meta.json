@@ -1,0 +1,16 @@
+{
+  "name": "agent-openrouter",
+  "category": "agents",
+  "description": "OpenRouter API. OpenAI-compatible format. Access to 100+ models. Native fetch, no SDK.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "model": { "type": "string", "default": "anthropic/claude-sonnet-4-20250514" },
+    "maxTokens": { "type": "number", "default": 16384 },
+    "apiKey": { "type": "string", "default": "" }
+  },
+  "importName": "createOpenRouterAgent",
+  "instanceTemplate": "createOpenRouterAgent(config.agent ?? { name: \"agent-openrouter\" })",
+  "phase": 3
+}

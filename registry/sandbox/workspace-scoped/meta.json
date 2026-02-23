@@ -1,0 +1,16 @@
+{
+  "name": "sandbox-workspace-scoped",
+  "category": "sandbox",
+  "description": "Workspace-scoped sandbox. Restricts execution to workspace directory. Path validation.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "workspaceDir": { "type": "string", "default": "./workspace" },
+    "allowedCommands": { "type": "array", "default": ["node", "npx", "npm", "cat", "ls", "echo", "grep", "find", "wc"] },
+    "timeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createWorkspaceScopedSandbox",
+  "instanceTemplate": "createWorkspaceScopedSandbox(config.sandbox ?? { name: \"sandbox-workspace-scoped\" })",
+  "phase": 3
+}

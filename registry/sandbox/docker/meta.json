@@ -1,0 +1,20 @@
+{
+  "name": "sandbox-docker",
+  "category": "sandbox",
+  "description": "Docker sandbox via dockerode. Container isolation. Resource limits. Auto-pull images.",
+  "npmDependencies": {
+    "dockerode": "^4.0.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "image": { "type": "string", "default": "node:20-slim" },
+    "memoryLimit": { "type": "number", "default": 536870912 },
+    "cpuQuota": { "type": "number", "default": 100000 },
+    "networkAccess": { "type": "boolean", "default": false },
+    "timeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createDockerSandbox",
+  "instanceTemplate": "createDockerSandbox(config.sandbox ?? { name: \"sandbox-docker\" })",
+  "phase": 3
+}

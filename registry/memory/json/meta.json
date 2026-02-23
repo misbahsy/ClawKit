@@ -1,0 +1,14 @@
+{
+  "name": "memory-json",
+  "category": "memory",
+  "description": "JSON file memory. One file per session. Human-readable. Zero dependencies.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "sessionDir": { "type": "string", "default": "./data/sessions" }
+  },
+  "importName": "createJsonMemory",
+  "instanceTemplate": "createJsonMemory(config.memory ?? { name: \"memory-json\" })",
+  "phase": 3
+}

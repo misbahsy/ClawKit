@@ -1,0 +1,14 @@
+{
+  "name": "memory-markdown",
+  "category": "memory",
+  "description": "Markdown file memory. Git-friendly. Structured headings per session. Zero dependencies.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "sessionDir": { "type": "string", "default": "./data/sessions" }
+  },
+  "importName": "createMarkdownMemory",
+  "instanceTemplate": "createMarkdownMemory(config.memory ?? { name: \"memory-markdown\" })",
+  "phase": 3
+}

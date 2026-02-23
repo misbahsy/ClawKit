@@ -112,6 +112,8 @@ describe("clawkit init (scaffolding)", () => {
     expect(entry).toContain("// === /SCHEDULER ===");
     expect(entry).toContain("// === SKILLS ===");
     expect(entry).toContain("// === /SKILLS ===");
+    expect(entry).toContain("// === IPC ===");
+    expect(entry).toContain("// === /IPC ===");
     expect(entry).toContain("startAgent");
     expect(entry).toContain("createCliChannel");
     expect(entry).toContain("createAnthropicAgent");
@@ -131,6 +133,27 @@ describe("clawkit init (scaffolding)", () => {
     expect(entry).toContain("createMCPSkillsManager");
     expect(entry).toContain("scheduler,");
     expect(entry).toContain("skills,");
+  });
+
+  it("should generate entry point with IPC when present", () => {
+    const baseComponents = DEFAULT_COMPONENTS.map((c) => readComponentMeta(c));
+    const ipcMeta = readComponentMeta("ipc-filesystem");
+    const allComponents = [...baseComponents, ipcMeta];
+    const registry = readRegistry();
+    const entry = generateEntryPoint(allComponents, registry);
+
+    expect(entry).toContain("createFilesystemIPC");
+    expect(entry).toContain("ipc,");
+  });
+
+  it("should generate config with IPC section when present", () => {
+    const baseComponents = DEFAULT_COMPONENTS.map((c) => readComponentMeta(c));
+    const ipcMeta = readComponentMeta("ipc-filesystem");
+    const allComponents = [...baseComponents, ipcMeta];
+    const config = generateConfig("test-project", allComponents);
+
+    expect(config).toContain("ipc:");
+    expect(config).toContain("ipc-filesystem");
   });
 
   it("should generate CLAUDE.md with architecture summary", () => {

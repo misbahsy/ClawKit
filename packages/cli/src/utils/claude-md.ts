@@ -10,6 +10,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   tools: "Tools",
   scheduler: "Scheduler",
   skills: "Skills",
+  ipc: "IPC",
 };
 
 export function generateClaudeMd(name: string, components: ComponentMeta[]): string {

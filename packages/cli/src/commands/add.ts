@@ -122,6 +122,15 @@ function updateConfig(projectDir: string, meta: ComponentMeta): void {
     changed = true;
   }
 
+  if (meta.category === "ipc" && !content.includes("ipc:")) {
+    const defaults = Object.entries(meta.configSchema)
+      .map(([key, schema]: [string, any]) => `    ${key}: ${JSON.stringify(schema.default)}`)
+      .join(",\n");
+    const ipcSection = `  ipc: {\n    name: "${meta.name}"${defaults ? ",\n" + defaults : ""},\n  },`;
+    content = content.replace(/}\);(\s*)$/, `${ipcSection}\n});$1`);
+    changed = true;
+  }
+
   if (changed) {
     writeFileSync(configPath, content, "utf-8");
   }

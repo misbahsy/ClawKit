@@ -1,0 +1,16 @@
+{
+  "name": "queue-per-group",
+  "category": "queue",
+  "description": "Per-group queue. Separate FIFO per session. Global concurrency limit. Exponential backoff.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "concurrency": { "type": "number", "default": 3 },
+    "maxRetries": { "type": "number", "default": 3 },
+    "maxBackoff": { "type": "number", "default": 30000 }
+  },
+  "importName": "createPerGroupQueue",
+  "instanceTemplate": "createPerGroupQueue(config.queue ?? { name: \"queue-per-group\" })",
+  "phase": 3
+}

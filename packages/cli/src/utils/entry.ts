@@ -13,6 +13,7 @@ const MARKERS = {
   TOOLS: { start: "// === TOOLS ===", end: "// === /TOOLS ===" },
   SCHEDULER: { start: "// === SCHEDULER ===", end: "// === /SCHEDULER ===" },
   SKILLS: { start: "// === SKILLS ===", end: "// === /SKILLS ===" },
+  IPC: { start: "// === IPC ===", end: "// === /IPC ===" },
 };
 
 function getImportPath(meta: ComponentMeta, registry: Record<string, { category: string; path: string }>): string {
@@ -30,6 +31,7 @@ export function generateEntryPoint(components: ComponentMeta[], registry: Record
   const tools = components.filter((c) => c.category === "tools");
   const schedulers = components.filter((c) => c.category === "scheduler");
   const skills = components.filter((c) => c.category === "skills");
+  const ipcs = components.filter((c) => c.category === "ipc");
 
   const imports: string[] = [];
   imports.push(`import config from "../clawkit.config.js";`);
@@ -54,6 +56,7 @@ export function generateEntryPoint(components: ComponentMeta[], registry: Record
 
   const scheduler = schedulers[0];
   const skillsMgr = skills[0];
+  const ipcComp = ipcs[0];
 
   return `${MARKERS.IMPORTS.start}
 ${imports.join("\n")}
@@ -97,6 +100,10 @@ ${MARKERS.SKILLS.start}
 const skills = ${skillsMgr ? skillsMgr.instanceTemplate : "undefined"};
 ${MARKERS.SKILLS.end}
 
+${MARKERS.IPC.start}
+const ipc = ${ipcComp ? ipcComp.instanceTemplate : "undefined"};
+${MARKERS.IPC.end}
+
 startAgent({
   channels,
   agent,
@@ -107,6 +114,7 @@ startAgent({
   tools,
   scheduler,
   skills,
+  ipc,
   config,
 }).catch((err) => {
   console.error("Fatal error:", err);
@@ -155,6 +163,9 @@ export function addComponentToEntry(entryPath: string, meta: ComponentMeta, regi
       break;
     case "skills":
       content = replaceSection(content, MARKERS.SKILLS, `const skills = ${meta.instanceTemplate};`);
+      break;
+    case "ipc":
+      content = replaceSection(content, MARKERS.IPC, `const ipc = ${meta.instanceTemplate};`);
       break;
   }
 

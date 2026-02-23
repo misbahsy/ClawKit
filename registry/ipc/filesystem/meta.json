@@ -1,0 +1,15 @@
+{
+  "name": "ipc-filesystem",
+  "category": "ipc",
+  "description": "Filesystem-based IPC. JSON files per channel. fs.watch polling. Request/response with correlation IDs.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "ipcDir": { "type": "string", "default": "./data/ipc" },
+    "requestTimeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createFilesystemIPC",
+  "instanceTemplate": "createFilesystemIPC(config.ipc ?? { name: \"ipc-filesystem\" })",
+  "phase": 3
+}

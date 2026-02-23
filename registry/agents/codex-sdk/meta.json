@@ -1,0 +1,17 @@
+{
+  "name": "agent-codex-sdk",
+  "category": "agents",
+  "description": "OpenAI Codex SDK. Thread-based API. Coding agent runtime from OpenAI.",
+  "npmDependencies": {
+    "@openai/codex": "^0.1.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "model": { "type": "string", "default": "codex-mini-latest" },
+    "apiKey": { "type": "string", "default": "" }
+  },
+  "importName": "createCodexSdkAgent",
+  "instanceTemplate": "createCodexSdkAgent(config.agent ?? { name: \"agent-codex-sdk\" })",
+  "phase": 3
+}

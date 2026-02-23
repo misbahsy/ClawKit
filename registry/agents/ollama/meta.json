@@ -1,0 +1,17 @@
+{
+  "name": "agent-ollama",
+  "category": "agents",
+  "description": "Local Ollama. Runs models locally. Streaming. Tool calling. No API key needed.",
+  "npmDependencies": {
+    "ollama": "^0.5.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "model": { "type": "string", "default": "llama3.2" },
+    "host": { "type": "string", "default": "http://localhost:11434" }
+  },
+  "importName": "createOllamaAgent",
+  "instanceTemplate": "createOllamaAgent(config.agent ?? { name: \"agent-ollama\" })",
+  "phase": 3
+}

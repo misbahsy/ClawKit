@@ -1,0 +1,17 @@
+{
+  "name": "ipc-websocket",
+  "category": "ipc",
+  "description": "WebSocket IPC. Server mode. Broadcast or targeted messaging. Request/response with correlation IDs.",
+  "npmDependencies": {
+    "ws": "^8.0.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "port": { "type": "number", "default": 9800 },
+    "requestTimeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createWebSocketIPC",
+  "instanceTemplate": "createWebSocketIPC(config.ipc ?? { name: \"ipc-websocket\" })",
+  "phase": 3
+}

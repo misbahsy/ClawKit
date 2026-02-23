@@ -122,6 +122,7 @@ export function generateConfig(name: string, components: ComponentMeta[]): strin
   let sandboxConfig = "";
   let schedulerConfig = "";
   let skillsConfig = "";
+  let ipcConfig = "";
   const toolNames: string[] = [];
 
   for (const comp of components) {
@@ -178,6 +179,13 @@ export function generateConfig(name: string, components: ComponentMeta[]): strin
         skillsConfig = `    mcp: [],\n    markdown: []`;
         break;
       }
+      case "ipc": {
+        const defaults = Object.entries(comp.configSchema)
+          .map(([key, schema]: [string, any]) => `    ${key}: ${JSON.stringify(schema.default)}`)
+          .join(",\n");
+        ipcConfig = `    name: "${comp.name}"${defaults ? ",\n" + defaults : ""}`;
+        break;
+      }
     }
   }
 
@@ -199,6 +207,7 @@ ${sandboxConfig ? `  sandbox: {\n${sandboxConfig},\n  },` : ""}
 ${schedulerConfig ? `  scheduler: {\n${schedulerConfig},\n  },` : ""}
 ${toolNames.length > 0 ? `  tools: [${toolNames.join(", ")}],` : ""}
 ${skillsConfig ? `  skills: {\n${skillsConfig},\n  },` : ""}
+${ipcConfig ? `  ipc: {\n${ipcConfig},\n  },` : ""}
 });
 `;
 }
