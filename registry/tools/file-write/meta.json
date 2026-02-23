@@ -1,0 +1,12 @@
+{
+  "name": "tool-file-write",
+  "category": "tools",
+  "description": "Write or create files. Creates directories as needed. Path traversal protection.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {},
+  "importName": "createFileWriteTool",
+  "instanceTemplate": "createFileWriteTool({ workspaceDir: config.aliases.workspace })",
+  "phase": 1
+}

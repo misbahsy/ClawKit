@@ -1,0 +1,21 @@
+{
+  "name": "whatsapp",
+  "category": "channels",
+  "description": "WhatsApp channel via Baileys. QR auth. Text, images, voice, docs. Groups. Reconnection with backoff.",
+  "npmDependencies": {
+    "baileys": "^6.7.16",
+    "@hapi/boom": "^10.0.1",
+    "pino": "^9.6.0",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "suggests": ["prompt-workspace"],
+  "suggestReason": {
+    "prompt-workspace": "Workspace prompt reads identity files for richer WhatsApp responses."
+  },
+  "configSchema": {
+    "authDir": { "type": "string", "default": "./data/whatsapp-auth" }
+  },
+  "importName": "createWhatsAppChannel",
+  "instanceTemplate": "createWhatsAppChannel(config.channels?.whatsapp ?? {})",
+  "phase": 2
+}

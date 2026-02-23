@@ -1,0 +1,12 @@
+{
+  "name": "sandbox-none",
+  "category": "sandbox",
+  "description": "No isolation. Direct host execution. For trusted environments only.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {},
+  "importName": "createNoSandbox",
+  "instanceTemplate": "createNoSandbox({})",
+  "phase": 1
+}

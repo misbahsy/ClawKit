@@ -1,0 +1,16 @@
+{
+  "name": "memory-sqlite",
+  "category": "memory",
+  "description": "SQLite via better-sqlite3. Single file. Zero config. FTS5 keyword search.",
+  "npmDependencies": {
+    "better-sqlite3": "^11.0.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "dbPath": { "type": "string", "default": "./data/memory.db" }
+  },
+  "importName": "createSqliteMemory",
+  "instanceTemplate": "createSqliteMemory(config.memory ?? { name: \"memory-sqlite\" })",
+  "phase": 1
+}

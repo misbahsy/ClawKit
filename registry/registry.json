@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "components": {
+    "cli": { "category": "channels", "path": "channels/cli" },
+    "whatsapp": { "category": "channels", "path": "channels/whatsapp" },
+    "agent-anthropic": { "category": "agents", "path": "agents/anthropic" },
+    "memory-sqlite": { "category": "memory", "path": "memory/sqlite" },
+    "tool-bash": { "category": "tools", "path": "tools/bash" },
+    "tool-file-read": { "category": "tools", "path": "tools/file-read" },
+    "tool-file-write": { "category": "tools", "path": "tools/file-write" },
+    "tool-web-search": { "category": "tools", "path": "tools/web-search" },
+    "queue-simple": { "category": "queue", "path": "queue/simple" },
+    "prompt-simple": { "category": "prompt", "path": "prompt/simple" },
+    "prompt-workspace": { "category": "prompt", "path": "prompt/workspace" },
+    "sandbox-none": { "category": "sandbox", "path": "sandbox/none" },
+    "scheduler-cron": { "category": "scheduler", "path": "scheduler/cron" },
+    "skills-mcp-client": { "category": "skills", "path": "skills/mcp-client" }
+  }
+}

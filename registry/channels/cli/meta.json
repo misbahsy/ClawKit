@@ -1,0 +1,16 @@
+{
+  "name": "cli",
+  "category": "channels",
+  "description": "Terminal REPL interface. stdin/stdout. Readline support.",
+  "npmDependencies": {},
+  "suggests": ["prompt-workspace"],
+  "suggestReason": {
+    "prompt-workspace": "Workspace prompt reads identity files for richer responses."
+  },
+  "configSchema": {
+    "promptString": { "type": "string", "default": "you> " }
+  },
+  "importName": "createCliChannel",
+  "instanceTemplate": "createCliChannel(config.channels?.cli ?? {})",
+  "phase": 1
+}

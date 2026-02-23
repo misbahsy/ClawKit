@@ -1,0 +1,14 @@
+{
+  "name": "prompt-simple",
+  "category": "prompt",
+  "description": "Minimal prompt builder. Identity + tools + date. ~500 tokens.",
+  "npmDependencies": {},
+  "suggests": ["prompt-workspace"],
+  "suggestReason": {
+    "prompt-workspace": "Workspace prompt reads AGENTS.md/SOUL.md for richer context."
+  },
+  "configSchema": {},
+  "importName": "createSimplePrompt",
+  "instanceTemplate": "createSimplePrompt(config.prompt ?? { name: \"prompt-simple\" })",
+  "phase": 1
+}

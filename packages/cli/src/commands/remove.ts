@@ -1,0 +1,79 @@
+import { existsSync, readFileSync, writeFileSync, rmSync } from "node:fs";
+import { resolve } from "node:path";
+import chalk from "chalk";
+import ora from "ora";
+import { readRegistry, readComponentMeta } from "../utils/registry.js";
+import { removeComponentFromEntry } from "../utils/entry.js";
+import { generateClaudeMd, preserveUserNotes } from "../utils/claude-md.js";
+
+export async function removeCommand(componentName: string): Promise<void> {
+  const projectDir = process.cwd();
+
+  if (!existsSync(resolve(projectDir, "clawkit.config.ts"))) {
+    console.error(chalk.red("Not a ClawKit project. Run `clawkit init` first."));
+    process.exit(1);
+  }
+
+  const registry = readRegistry();
+  const entry = registry[componentName];
+  if (!entry) {
+    console.error(chalk.red(`Unknown component: ${componentName}`));
+    process.exit(1);
+  }
+
+  const compDir = resolve(projectDir, "components", entry.path);
+  if (!existsSync(compDir)) {
+    console.error(chalk.red(`Component "${componentName}" is not installed.`));
+    process.exit(1);
+  }
+
+  const spinner = ora(`Removing ${componentName}...`).start();
+
+  try {
+    const meta = readComponentMeta(componentName);
+
+    rmSync(compDir, { recursive: true, force: true });
+
+    const entryPath = resolve(projectDir, "src", "index.ts");
+    removeComponentFromEntry(entryPath, meta);
+
+    const configPath = resolve(projectDir, "clawkit.config.ts");
+    if (existsSync(configPath)) {
+      let content = readFileSync(configPath, "utf-8");
+      content = content.replace(new RegExp(`\\s*"${meta.name}",?`, "g"), "");
+      content = content.replace(/,(\s*\])/g, "$1");
+      writeFileSync(configPath, content, "utf-8");
+    }
+
+    const installed = getInstalledComponents(projectDir);
+    const metas = installed.map((n) => {
+      try { return readComponentMeta(n); } catch { return null; }
+    }).filter((m): m is NonNullable<typeof m> => m !== null);
+
+    const claudeMdPath = resolve(projectDir, "CLAUDE.md");
+    const existingContent = existsSync(claudeMdPath) ? readFileSync(claudeMdPath, "utf-8") : "";
+    const configContent = readFileSync(configPath, "utf-8");
+    const nameMatch = configContent.match(/name:\s*["']([^"']+)["']/);
+    const projectName = nameMatch?.[1] ?? "agent";
+    let newContent = generateClaudeMd(projectName, metas);
+    if (existingContent) {
+      newContent = preserveUserNotes(existingContent, newContent);
+    }
+    writeFileSync(claudeMdPath, newContent, "utf-8");
+
+    spinner.succeed(`Removed ${chalk.red(componentName)}`);
+  } catch (err: any) {
+    spinner.fail(`Failed to remove ${componentName}: ${err.message}`);
+  }
+}
+
+function getInstalledComponents(projectDir: string): string[] {
+  const registry = readRegistry();
+  const installed: string[] = [];
+  for (const [name, entry] of Object.entries(registry)) {
+    if (existsSync(resolve(projectDir, "components", entry.path))) {
+      installed.push(name);
+    }
+  }
+  return installed;
+}

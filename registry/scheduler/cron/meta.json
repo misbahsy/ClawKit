@@ -1,0 +1,16 @@
+{
+  "name": "scheduler-cron",
+  "category": "scheduler",
+  "description": "Cron-based job scheduler. Supports cron expressions and interval jobs.",
+  "npmDependencies": {
+    "node-cron": "^3.0.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "timezone": { "type": "string", "default": "UTC" }
+  },
+  "importName": "createCronScheduler",
+  "instanceTemplate": "createCronScheduler(config.scheduler ?? { name: \"scheduler-cron\" })",
+  "phase": 2
+}

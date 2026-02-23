@@ -1,0 +1,12 @@
+{
+  "name": "prompt-workspace",
+  "category": "prompt",
+  "description": "Workspace-aware prompt builder. Reads AGENTS.md, SOUL.md, TOOLS.md, USER.md. mtime caching.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {},
+  "importName": "createWorkspacePrompt",
+  "instanceTemplate": "createWorkspacePrompt({ workspaceDir: config.aliases.workspace })",
+  "phase": 2
+}

@@ -1,0 +1,14 @@
+{
+  "name": "tool-web-search",
+  "category": "tools",
+  "description": "Web search via Brave, Tavily, or SerpAPI. Native fetch, no npm deps.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "provider": { "type": "string", "default": "brave" }
+  },
+  "importName": "createWebSearchTool",
+  "instanceTemplate": "createWebSearchTool({ workspaceDir: config.aliases.workspace })",
+  "phase": 2
+}

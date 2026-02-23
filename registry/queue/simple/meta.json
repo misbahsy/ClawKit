@@ -1,0 +1,14 @@
+{
+  "name": "queue-simple",
+  "category": "queue",
+  "description": "In-memory FIFO queue. Concurrency 1. Zero dependencies.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "concurrency": { "type": "number", "default": 1 }
+  },
+  "importName": "createSimpleQueue",
+  "instanceTemplate": "createSimpleQueue(config.queue ?? { name: \"queue-simple\" })",
+  "phase": 1
+}

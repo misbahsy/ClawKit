@@ -1,0 +1,20 @@
+{
+  "name": "agent-anthropic",
+  "category": "agents",
+  "description": "Direct Anthropic API. Claude models. Streaming. Prompt caching. Tool use loop.",
+  "npmDependencies": {
+    "@anthropic-ai/sdk": "^0.39.0"
+  },
+  "suggests": ["skills-mcp-client"],
+  "suggestReason": {
+    "skills-mcp-client": "MCP client enables tool discovery from external MCP servers."
+  },
+  "configSchema": {
+    "model": { "type": "string", "default": "claude-sonnet-4-20250514" },
+    "maxTokens": { "type": "number", "default": 16384 },
+    "apiKey": { "type": "string", "default": "" }
+  },
+  "importName": "createAnthropicAgent",
+  "instanceTemplate": "createAnthropicAgent(config.agent ?? { name: \"agent-anthropic\" })",
+  "phase": 1
+}

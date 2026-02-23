@@ -1,0 +1,14 @@
+{
+  "name": "skills-mcp-client",
+  "category": "skills",
+  "description": "MCP client. Connects to MCP servers (stdio + HTTP). Discovers and exposes tools.",
+  "npmDependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {},
+  "importName": "createMCPSkillsManager",
+  "instanceTemplate": "createMCPSkillsManager(config.skills ?? {})",
+  "phase": 2
+}

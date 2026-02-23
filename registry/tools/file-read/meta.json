@@ -1,0 +1,12 @@
+{
+  "name": "tool-file-read",
+  "category": "tools",
+  "description": "Read file contents. Supports line ranges. Path traversal protection.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {},
+  "importName": "createFileReadTool",
+  "instanceTemplate": "createFileReadTool({ workspaceDir: config.aliases.workspace })",
+  "phase": 1
+}
