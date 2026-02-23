@@ -1,0 +1,15 @@
+{
+  "name": "scheduler-persistent",
+  "category": "scheduler",
+  "description": "SQLite-backed persistent scheduler. Jobs survive restarts. Handler via registered function map.",
+  "npmDependencies": { "better-sqlite3": "^11.0.0", "node-cron": "^3.0.0" },
+  "suggests": ["scheduler-cron"],
+  "suggestReason": { "scheduler-cron": "Lightweight cron scheduler without persistence." },
+  "configSchema": {
+    "dbPath": { "type": "string", "default": "./data/scheduler.db" },
+    "timezone": { "type": "string", "default": "UTC" }
+  },
+  "importName": "createPersistentScheduler",
+  "instanceTemplate": "createPersistentScheduler(config.scheduler ?? { name: \"scheduler-persistent\" })",
+  "phase": 4
+}

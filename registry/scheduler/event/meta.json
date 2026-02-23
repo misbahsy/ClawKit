@@ -1,0 +1,14 @@
+{
+  "name": "scheduler-event",
+  "category": "scheduler",
+  "description": "Event-driven trigger scheduler. Named events fire handlers. Chain support for reactive workflows.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "maxListeners": { "type": "number", "default": 100 }
+  },
+  "importName": "createEventScheduler",
+  "instanceTemplate": "createEventScheduler(config.scheduler ?? { name: \"scheduler-event\" })",
+  "phase": 6
+}

@@ -1,0 +1,22 @@
+{
+  "name": "sandbox-firecracker",
+  "category": "sandbox",
+  "description": "Firecracker microVM sandbox. Sub-second boot. Uses Firecracker HTTP API via child_process. Zero deps.",
+  "npmDependencies": {},
+  "suggests": ["sandbox-docker", "sandbox-nsjail"],
+  "suggestReason": {
+    "sandbox-docker": "Docker is more widely available with a richer ecosystem.",
+    "sandbox-nsjail": "Namespace jail is lighter but without full VM isolation."
+  },
+  "configSchema": {
+    "firecrackerPath": { "type": "string", "default": "/usr/bin/firecracker" },
+    "kernelPath": { "type": "string", "default": "./vmlinux" },
+    "rootfsPath": { "type": "string", "default": "./rootfs.ext4" },
+    "memoryMb": { "type": "number", "default": 256 },
+    "vcpuCount": { "type": "number", "default": 1 },
+    "timeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createFirecrackerSandbox",
+  "instanceTemplate": "createFirecrackerSandbox(config.sandbox ?? { name: \"sandbox-firecracker\" })",
+  "phase": 7
+}

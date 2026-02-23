@@ -1,0 +1,17 @@
+{
+  "name": "memory-postgres",
+  "category": "memory",
+  "description": "PostgreSQL with pgvector. Production-grade. Full-text search via tsvector. Optional vector similarity.",
+  "npmDependencies": {
+    "pg": "^8.0.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "connectionString": { "type": "string", "default": "" },
+    "tableName": { "type": "string", "default": "clawkit_messages" }
+  },
+  "importName": "createPostgresMemory",
+  "instanceTemplate": "createPostgresMemory(config.memory ?? { name: \"memory-postgres\" })",
+  "phase": 5
+}

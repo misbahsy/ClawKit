@@ -1,0 +1,16 @@
+{
+  "name": "skills-markdown",
+  "category": "skills",
+  "description": "Scan directories for .md skills with YAML frontmatter. ClawHub-compatible format.",
+  "npmDependencies": {},
+  "suggests": ["skills-clawhub"],
+  "suggestReason": {
+    "skills-clawhub": "ClawHub can download and install markdown skills from the community registry."
+  },
+  "configSchema": {
+    "directories": { "type": "array", "default": ["./workspace/skills"] }
+  },
+  "importName": "createMarkdownSkills",
+  "instanceTemplate": "createMarkdownSkills(config.skills ?? { directories: [\"./workspace/skills\"] })",
+  "phase": 4
+}

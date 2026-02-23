@@ -1,0 +1,18 @@
+{
+  "name": "teams",
+  "category": "channels",
+  "description": "Microsoft Teams channel via Bot Framework. Activity handler. Proactive messaging via conversation references. Attachments.",
+  "npmDependencies": {
+    "botframework-connector": "^4.0.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "appId": { "type": "string", "default": "" },
+    "appPassword": { "type": "string", "default": "" },
+    "serviceUrl": { "type": "string", "default": "https://smba.trafficmanager.net/teams/" }
+  },
+  "importName": "createTeamsChannel",
+  "instanceTemplate": "createTeamsChannel(config.channels?.teams ?? {})",
+  "phase": 6
+}

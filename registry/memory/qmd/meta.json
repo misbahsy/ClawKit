@@ -1,0 +1,15 @@
+{
+  "name": "memory-qmd",
+  "category": "memory",
+  "description": "QMD hybrid search via CLI. 5-stage pipeline. Graceful fallback to JSON if qmd binary missing.",
+  "npmDependencies": {},
+  "suggests": ["memory-hybrid-rrf"],
+  "suggestReason": { "memory-hybrid-rrf": "Built-in hybrid search without external binary dependency." },
+  "configSchema": {
+    "dataDir": { "type": "string", "default": "./data/qmd" },
+    "collection": { "type": "string", "default": "memory" }
+  },
+  "importName": "createQMDMemory",
+  "instanceTemplate": "createQMDMemory(config.memory ?? { name: \"memory-qmd\" })",
+  "phase": 4
+}

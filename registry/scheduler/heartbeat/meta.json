@@ -1,0 +1,12 @@
+{
+  "name": "scheduler-heartbeat",
+  "category": "scheduler",
+  "description": "Proactive heartbeat scheduler. Fires agent with prompt on schedule. Good morning briefing pattern.",
+  "npmDependencies": { "node-cron": "^3.0.0" },
+  "suggests": ["scheduler-cron"],
+  "suggestReason": { "scheduler-cron": "Full cron scheduler with one-shot and interval support." },
+  "configSchema": { "timezone": { "type": "string", "default": "UTC" } },
+  "importName": "createHeartbeatScheduler",
+  "instanceTemplate": "createHeartbeatScheduler(config.scheduler ?? { name: \"scheduler-heartbeat\" })",
+  "phase": 4
+}

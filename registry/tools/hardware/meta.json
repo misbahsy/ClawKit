@@ -1,0 +1,14 @@
+{
+  "name": "tool-hardware",
+  "category": "tools",
+  "description": "System hardware information: CPU, memory, disk usage, network interfaces.",
+  "npmDependencies": {
+    "systeminformation": "^5.0.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {},
+  "importName": "createHardwareTool",
+  "instanceTemplate": "createHardwareTool({})",
+  "phase": 7
+}

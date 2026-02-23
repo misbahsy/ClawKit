@@ -1,0 +1,17 @@
+{
+  "name": "tool-git",
+  "category": "tools",
+  "description": "Git operations: status, diff, commit, push, log, add, checkout, branch. Uses child_process.",
+  "npmDependencies": {},
+  "suggests": ["tool-bash", "tool-file-edit"],
+  "suggestReason": {
+    "tool-bash": "Bash tool can run arbitrary git commands as fallback.",
+    "tool-file-edit": "Edit files before committing."
+  },
+  "configSchema": {
+    "timeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createGitTool",
+  "instanceTemplate": "createGitTool({ workspaceDir: config.aliases.workspace })",
+  "phase": 5
+}

@@ -1,0 +1,12 @@
+{
+  "name": "tool-cron",
+  "category": "tools",
+  "description": "Create, list, and delete scheduled jobs. In-memory store with runtime scheduler notification.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {},
+  "importName": "createCronTool",
+  "instanceTemplate": "createCronTool({})",
+  "phase": 5
+}

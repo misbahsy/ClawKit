@@ -1,0 +1,15 @@
+{
+  "name": "sandbox-wasm",
+  "category": "sandbox",
+  "description": "WASM sandbox with capability-based permissions. Per-tool rate limits. IronClaw-inspired.",
+  "npmDependencies": {},
+  "suggests": ["sandbox-docker"],
+  "suggestReason": { "sandbox-docker": "Docker provides stronger isolation but heavier overhead." },
+  "configSchema": {
+    "capabilities": { "type": "array", "default": ["fs.read", "exec"] },
+    "rateLimit": { "type": "object", "default": { "maxCalls": 100, "windowMs": 60000 } }
+  },
+  "importName": "createWasmSandbox",
+  "instanceTemplate": "createWasmSandbox(config.sandbox ?? { name: \"sandbox-wasm\" })",
+  "phase": 4
+}

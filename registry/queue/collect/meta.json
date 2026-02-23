@@ -1,0 +1,15 @@
+{
+  "name": "queue-collect",
+  "category": "queue",
+  "description": "Collect mode queue. Messages held until current turn ends, then batched into next turn. OpenClaw collect pattern.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "concurrency": { "type": "number", "default": 1 },
+    "batchSeparator": { "type": "string", "default": "\n---\n" }
+  },
+  "importName": "createCollectQueue",
+  "instanceTemplate": "createCollectQueue(config.queue ?? { name: \"queue-collect\" })",
+  "phase": 6
+}

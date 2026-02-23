@@ -1,0 +1,17 @@
+{
+  "name": "ipc-http",
+  "category": "ipc",
+  "description": "HTTP request/response IPC. REST-style. Starts HTTP server for incoming, POSTs for outgoing.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "port": { "type": "number", "default": 0 },
+    "host": { "type": "string", "default": "127.0.0.1" },
+    "targetUrl": { "type": "string" },
+    "requestTimeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createHttpIPC",
+  "instanceTemplate": "createHttpIPC(config.ipc ?? { name: \"ipc-http\" })",
+  "phase": 5
+}

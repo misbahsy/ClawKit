@@ -1,0 +1,17 @@
+{
+  "name": "lark",
+  "category": "channels",
+  "description": "Lark/Feishu messaging channel via Lark Open API. Tenant access token auth. Event-driven inbound. REST outbound to /im/v1/messages.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "appId": { "type": "string", "default": "" },
+    "appSecret": { "type": "string", "default": "" },
+    "verificationToken": { "type": "string", "default": "" },
+    "pollInterval": { "type": "number", "default": 5000 }
+  },
+  "importName": "createLarkChannel",
+  "instanceTemplate": "createLarkChannel(config.channels?.lark ?? {})",
+  "phase": 6
+}

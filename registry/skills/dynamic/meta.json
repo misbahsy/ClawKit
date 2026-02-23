@@ -1,0 +1,18 @@
+{
+  "name": "skills-dynamic",
+  "category": "skills",
+  "description": "Agent creates own tools at runtime. Generate scripts within sandbox constraints. Persist to scriptDir.",
+  "npmDependencies": {},
+  "suggests": ["sandbox-wasm"],
+  "suggestReason": {
+    "sandbox-wasm": "WASM sandbox provides safe execution environment for dynamic tool scripts."
+  },
+  "configSchema": {
+    "sandboxed": { "type": "boolean", "default": true },
+    "maxDynamicTools": { "type": "number", "default": 20 },
+    "scriptDir": { "type": "string", "default": "./workspace/dynamic-tools" }
+  },
+  "importName": "createDynamicSkills",
+  "instanceTemplate": "createDynamicSkills(config.skills ?? { scriptDir: \"./workspace/dynamic-tools\" })",
+  "phase": 7
+}

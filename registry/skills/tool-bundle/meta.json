@@ -1,0 +1,14 @@
+{
+  "name": "skills-tool-bundle",
+  "category": "skills",
+  "description": "Package tools + prompt description as distributable skill bundles. Loads .json bundle files from directories.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "directories": { "type": "array", "items": { "type": "string" }, "default": [] }
+  },
+  "importName": "createToolBundleSkills",
+  "instanceTemplate": "createToolBundleSkills(config.skills ?? { name: \"skills-tool-bundle\" })",
+  "phase": 5
+}

@@ -1,0 +1,14 @@
+{
+  "name": "queue-steer",
+  "category": "queue",
+  "description": "Steer mode queue. New messages injected into current turn while agent runs. OpenClaw steer pattern.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "concurrency": { "type": "number", "default": 1 }
+  },
+  "importName": "createSteerQueue",
+  "instanceTemplate": "createSteerQueue(config.queue ?? { name: \"queue-steer\" })",
+  "phase": 6
+}

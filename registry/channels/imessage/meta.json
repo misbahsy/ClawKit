@@ -1,0 +1,19 @@
+{
+  "name": "imessage",
+  "category": "channels",
+  "description": "iMessage channel via AppleScript (macOS) or BlueBubbles HTTP bridge. Polling-based. Text messages and media via BlueBubbles.",
+  "npmDependencies": {},
+  "suggests": ["slack"],
+  "suggestReason": {
+    "slack": "Slack provides a cross-platform alternative when iMessage is macOS-only."
+  },
+  "configSchema": {
+    "pollInterval": { "type": "number", "default": 5000 },
+    "useBlueBubbles": { "type": "boolean", "default": false },
+    "blueBubblesUrl": { "type": "string", "default": "http://localhost:1234" },
+    "blueBubblesPassword": { "type": "string", "default": "" }
+  },
+  "importName": "createIMessageChannel",
+  "instanceTemplate": "createIMessageChannel(config.channels?.imessage ?? {})",
+  "phase": 6
+}

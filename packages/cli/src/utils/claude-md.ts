@@ -1,4 +1,7 @@
-import type { ComponentMeta } from "./registry.js";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
+import chalk from "chalk";
+import { readComponentMeta, getInstalledComponents, type ComponentMeta } from "./registry.js";
 
 const CATEGORY_LABELS: Record<string, string> = {
   channels: "Channel",
@@ -91,4 +94,37 @@ export function preserveUserNotes(existingContent: string, newContent: string): 
   if (newMarkerIdx === -1) return newContent + "\n" + userNotes;
 
   return newContent.slice(0, newMarkerIdx) + userNotes;
+}
+
+export function validateProjectDir(projectDir: string): void {
+  if (!existsSync(resolve(projectDir, "clawkit.config.ts"))) {
+    console.error(chalk.red("Not a ClawKit project. Run `clawkit init` first."));
+    process.exit(1);
+  }
+}
+
+export function regenerateClaudeMd(projectDir: string): void {
+  const configPath = resolve(projectDir, "clawkit.config.ts");
+  if (!existsSync(configPath)) return;
+
+  const installed = getInstalledComponents(projectDir);
+  const metas: ComponentMeta[] = [];
+  for (const name of installed) {
+    try {
+      metas.push(readComponentMeta(name));
+    } catch { /* skip unknown */ }
+  }
+
+  const claudeMdPath = resolve(projectDir, "CLAUDE.md");
+  const existingContent = existsSync(claudeMdPath) ? readFileSync(claudeMdPath, "utf-8") : "";
+
+  const configContent = readFileSync(configPath, "utf-8");
+  const nameMatch = configContent.match(/name:\s*["']([^"']+)["']/);
+  const projectName = nameMatch?.[1] ?? "agent";
+
+  let newContent = generateClaudeMd(projectName, metas);
+  if (existingContent) {
+    newContent = preserveUserNotes(existingContent, newContent);
+  }
+  writeFileSync(claudeMdPath, newContent, "utf-8");
 }

@@ -1,0 +1,21 @@
+{
+  "name": "memory-sqlite-hybrid",
+  "category": "memory",
+  "description": "FTS5 keyword + sqlite-vec vector search. Weighted BM25 + cosine scoring with configurable weights.",
+  "npmDependencies": { "better-sqlite3": "^11.0.0" },
+  "suggests": ["memory-hybrid-rrf", "memory-sqlite"],
+  "suggestReason": {
+    "memory-hybrid-rrf": "Uses RRF fusion instead of explicit weight tuning.",
+    "memory-sqlite": "Simpler SQLite memory with keyword search only."
+  },
+  "configSchema": {
+    "dbPath": { "type": "string", "default": "./data/memory-sqlite-hybrid.db" },
+    "weightBM25": { "type": "number", "default": 0.5 },
+    "weightVector": { "type": "number", "default": 0.5 },
+    "embeddingEndpoint": { "type": "string", "default": "http://localhost:11434/api/embeddings" },
+    "embeddingModel": { "type": "string", "default": "nomic-embed-text" }
+  },
+  "importName": "createSqliteHybridMemory",
+  "instanceTemplate": "createSqliteHybridMemory(config.memory ?? { name: \"memory-sqlite-hybrid\" })",
+  "phase": 7
+}

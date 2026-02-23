@@ -1,0 +1,17 @@
+{
+  "name": "memory-hybrid-rrf",
+  "category": "memory",
+  "description": "Reciprocal Rank Fusion: FTS5 keyword + vector cosine. Embeddings via Ollama. Score = Σ(1/(k+rank+1)).",
+  "npmDependencies": { "better-sqlite3": "^11.0.0" },
+  "suggests": ["memory-sqlite"],
+  "suggestReason": { "memory-sqlite": "Simpler SQLite memory without vector search." },
+  "configSchema": {
+    "dbPath": { "type": "string", "default": "./data/memory-hybrid.db" },
+    "embeddingEndpoint": { "type": "string", "default": "http://localhost:11434/api/embeddings" },
+    "embeddingModel": { "type": "string", "default": "nomic-embed-text" },
+    "k": { "type": "number", "default": 60 }
+  },
+  "importName": "createHybridRRFMemory",
+  "instanceTemplate": "createHybridRRFMemory(config.memory ?? { name: \"memory-hybrid-rrf\" })",
+  "phase": 4
+}

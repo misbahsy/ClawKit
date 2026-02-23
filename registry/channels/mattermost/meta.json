@@ -1,0 +1,20 @@
+{
+  "name": "mattermost",
+  "category": "channels",
+  "description": "Mattermost channel via @mattermost/client. Self-hosted team chat. WebSocket real-time events. File uploads. Thread replies.",
+  "npmDependencies": {
+    "@mattermost/client": "^10.0.0"
+  },
+  "suggests": ["queue-per-group"],
+  "suggestReason": {
+    "queue-per-group": "Per-group queue handles concurrent Mattermost channel messages gracefully."
+  },
+  "configSchema": {
+    "serverUrl": { "type": "string", "default": "" },
+    "token": { "type": "string", "default": "" },
+    "teamId": { "type": "string", "default": "" }
+  },
+  "importName": "createMattermostChannel",
+  "instanceTemplate": "createMattermostChannel(config.channels?.mattermost ?? {})",
+  "phase": 6
+}

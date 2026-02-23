@@ -1,0 +1,18 @@
+{
+  "name": "tool-web-fetch",
+  "category": "tools",
+  "description": "Fetch web pages and extract text content. HTML tag stripping, optional CSS selector filtering.",
+  "npmDependencies": {},
+  "suggests": ["tool-web-search", "tool-http-request"],
+  "suggestReason": {
+    "tool-web-search": "Search the web to find URLs, then fetch them.",
+    "tool-http-request": "HTTP request tool for API calls vs web page fetching."
+  },
+  "configSchema": {
+    "timeout": { "type": "number", "default": 15000 },
+    "maxLength": { "type": "number", "default": 50000 }
+  },
+  "importName": "createWebFetchTool",
+  "instanceTemplate": "createWebFetchTool({})",
+  "phase": 5
+}

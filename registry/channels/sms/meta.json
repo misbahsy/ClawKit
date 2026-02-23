@@ -1,0 +1,19 @@
+{
+  "name": "sms",
+  "category": "channels",
+  "description": "SMS channel via Twilio REST API using fetch. Polling for inbound. POST to Twilio Messages API for outbound.",
+  "npmDependencies": {},
+  "suggests": ["email"],
+  "suggestReason": {
+    "email": "Email provides an additional text-based communication channel alongside SMS."
+  },
+  "configSchema": {
+    "accountSid": { "type": "string", "default": "" },
+    "authToken": { "type": "string", "default": "" },
+    "fromNumber": { "type": "string", "default": "" },
+    "pollInterval": { "type": "number", "default": 10000 }
+  },
+  "importName": "createSmsChannel",
+  "instanceTemplate": "createSmsChannel(config.channels?.sms ?? {})",
+  "phase": 6
+}

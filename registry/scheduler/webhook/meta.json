@@ -1,0 +1,15 @@
+{
+  "name": "scheduler-webhook",
+  "category": "scheduler",
+  "description": "HTTP webhook trigger scheduler. POST to /webhook/:jobId fires handler. Built-in HTTP server.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "port": { "type": "number", "default": 3100 },
+    "host": { "type": "string", "default": "0.0.0.0" }
+  },
+  "importName": "createWebhookScheduler",
+  "instanceTemplate": "createWebhookScheduler(config.scheduler ?? { name: \"scheduler-webhook\" })",
+  "phase": 6
+}

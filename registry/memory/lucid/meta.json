@@ -1,0 +1,17 @@
+{
+  "name": "memory-lucid",
+  "category": "memory",
+  "description": "Lucid bridge for ZeroClaw-style memory. Snapshot/hydrate lifecycle with session isolation. Zero deps.",
+  "npmDependencies": {},
+  "suggests": ["memory-json", "memory-knowledge-graph"],
+  "suggestReason": {
+    "memory-json": "Simple JSON file memory without snapshot/hydrate lifecycle.",
+    "memory-knowledge-graph": "Structured knowledge graph for entity-based recall."
+  },
+  "configSchema": {
+    "dataDir": { "type": "string", "default": "./data/memory-lucid" }
+  },
+  "importName": "createLucidMemory",
+  "instanceTemplate": "createLucidMemory(config.memory ?? { name: \"memory-lucid\" })",
+  "phase": 7
+}

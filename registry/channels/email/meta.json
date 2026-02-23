@@ -1,0 +1,23 @@
+{
+  "name": "email",
+  "category": "channels",
+  "description": "Email channel via IMAP polling + SMTP send. Nodemailer + ImapFlow. Attachments. HTML and plain text.",
+  "npmDependencies": {
+    "nodemailer": "^6.9.0",
+    "imapflow": "^1.0.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "imapHost": { "type": "string", "default": "" },
+    "imapPort": { "type": "number", "default": 993 },
+    "smtpHost": { "type": "string", "default": "" },
+    "smtpPort": { "type": "number", "default": 587 },
+    "user": { "type": "string", "default": "" },
+    "password": { "type": "string", "default": "" },
+    "pollInterval": { "type": "number", "default": 30000 }
+  },
+  "importName": "createEmailChannel",
+  "instanceTemplate": "createEmailChannel(config.channels?.email ?? {})",
+  "phase": 5
+}

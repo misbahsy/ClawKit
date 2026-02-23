@@ -1,0 +1,15 @@
+{
+  "name": "zalo",
+  "category": "channels",
+  "description": "Zalo OA channel via Zalo Official Account API v3. Token-based auth. Event-driven inbound. REST outbound for text and media.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "oaAccessToken": { "type": "string", "default": "" },
+    "oaSecretKey": { "type": "string", "default": "" }
+  },
+  "importName": "createZaloChannel",
+  "instanceTemplate": "createZaloChannel(config.channels?.zalo ?? {})",
+  "phase": 6
+}

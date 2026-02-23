@@ -1,0 +1,16 @@
+{
+  "name": "tool-memory-read",
+  "category": "tools",
+  "description": "Search agent long-term memory. Delegates to runtime memory module via sendMessage.",
+  "npmDependencies": {},
+  "suggests": ["tool-memory-write"],
+  "suggestReason": {
+    "tool-memory-write": "Write memories that can later be searched."
+  },
+  "configSchema": {
+    "defaultLimit": { "type": "number", "default": 10 }
+  },
+  "importName": "createMemoryReadTool",
+  "instanceTemplate": "createMemoryReadTool({})",
+  "phase": 5
+}

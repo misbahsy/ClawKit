@@ -1,0 +1,19 @@
+{
+  "name": "tool-composio",
+  "category": "tools",
+  "description": "Composio integration for 100+ app connections. GitHub, Slack, Gmail, Notion, and more via single API.",
+  "npmDependencies": {
+    "composio-core": "^0.4.0"
+  },
+  "suggests": ["tool-http-request"],
+  "suggestReason": {
+    "tool-http-request": "HTTP request tool provides fallback for direct API calls when Composio is unavailable."
+  },
+  "configSchema": {
+    "apiKey": { "type": "string" },
+    "apps": { "type": "array", "default": [] }
+  },
+  "importName": "createComposioTool",
+  "instanceTemplate": "createComposioTool({})",
+  "phase": 7
+}

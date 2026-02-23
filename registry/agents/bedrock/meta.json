@@ -1,0 +1,18 @@
+{
+  "name": "agent-bedrock",
+  "category": "agents",
+  "description": "AWS Bedrock runtime. InvokeModelWithResponseStream. Multi-model support. Streaming.",
+  "npmDependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.0.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "model": { "type": "string", "default": "anthropic.claude-3-sonnet-20240229-v1:0" },
+    "region": { "type": "string", "default": "us-east-1" },
+    "maxTokens": { "type": "number", "default": 4096 }
+  },
+  "importName": "createBedrockAgent",
+  "instanceTemplate": "createBedrockAgent(config.agent ?? { name: \"agent-bedrock\" })",
+  "phase": 6
+}

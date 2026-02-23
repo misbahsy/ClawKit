@@ -1,0 +1,12 @@
+{
+  "name": "tool-send-message",
+  "category": "tools",
+  "description": "Send messages to channels or sessions. Routes through runtime messaging via context.sendMessage.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {},
+  "importName": "createSendMessageTool",
+  "instanceTemplate": "createSendMessageTool({})",
+  "phase": 5
+}

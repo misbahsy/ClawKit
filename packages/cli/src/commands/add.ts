@@ -11,15 +11,11 @@ import {
 } from "../utils/registry.js";
 import { copyComponent } from "../utils/scaffold.js";
 import { addComponentToEntry } from "../utils/entry.js";
-import { generateClaudeMd, preserveUserNotes } from "../utils/claude-md.js";
+import { validateProjectDir, regenerateClaudeMd } from "../utils/claude-md.js";
 
 export async function addCommand(componentNames: string[]): Promise<void> {
   const projectDir = process.cwd();
-
-  if (!existsSync(resolve(projectDir, "clawkit.config.ts"))) {
-    console.error(chalk.red("Not a ClawKit project. Run `clawkit init` first."));
-    process.exit(1);
-  }
+  validateProjectDir(projectDir);
 
   const registry = readRegistry();
   let spinner = ora("Adding components...").start();
@@ -137,32 +133,4 @@ function updateConfig(projectDir: string, meta: ComponentMeta): void {
   }
 }
 
-function regenerateClaudeMd(projectDir: string): void {
-  const configPath = resolve(projectDir, "clawkit.config.ts");
-  if (!existsSync(configPath)) return;
-
-  const installed = getInstalledComponents(projectDir);
-  const metas: ComponentMeta[] = [];
-  for (const name of installed) {
-    try {
-      metas.push(readComponentMeta(name));
-    } catch {
-      // Skip unknown components
-    }
-  }
-
-  const claudeMdPath = resolve(projectDir, "CLAUDE.md");
-  const existingContent = existsSync(claudeMdPath) ? readFileSync(claudeMdPath, "utf-8") : "";
-
-  const configContent = readFileSync(configPath, "utf-8");
-  const nameMatch = configContent.match(/name:\s*["']([^"']+)["']/);
-  const projectName = nameMatch?.[1] ?? "agent";
-
-  let newContent = generateClaudeMd(projectName, metas);
-  if (existingContent) {
-    newContent = preserveUserNotes(existingContent, newContent);
-  }
-
-  writeFileSync(claudeMdPath, newContent, "utf-8");
-}
 

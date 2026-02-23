@@ -1,0 +1,17 @@
+{
+  "name": "agent-codex-mcp",
+  "category": "agents",
+  "description": "Codex CLI as MCP server. Spawns npx codex --mcp. JSON-RPC over stdio. Provides codex tools.",
+  "npmDependencies": {},
+  "suggests": ["skills-mcp-client"],
+  "suggestReason": {
+    "skills-mcp-client": "MCP client can discover additional tools from the Codex MCP server."
+  },
+  "configSchema": {
+    "model": { "type": "string", "default": "" },
+    "timeout": { "type": "number", "default": 120000 }
+  },
+  "importName": "createCodexMcpAgent",
+  "instanceTemplate": "createCodexMcpAgent(config.agent ?? { name: \"agent-codex-mcp\" })",
+  "phase": 6
+}

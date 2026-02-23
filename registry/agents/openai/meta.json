@@ -1,0 +1,20 @@
+{
+  "name": "agent-openai",
+  "category": "agents",
+  "description": "Direct OpenAI API. GPT and o-series models. Streaming chat completions. Function calling. Tool use loop.",
+  "npmDependencies": {
+    "openai": "^4.0.0"
+  },
+  "suggests": ["skills-mcp-client"],
+  "suggestReason": {
+    "skills-mcp-client": "MCP client enables tool discovery from external MCP servers."
+  },
+  "configSchema": {
+    "model": { "type": "string", "default": "gpt-4o" },
+    "maxTokens": { "type": "number", "default": 4096 },
+    "apiKey": { "type": "string", "default": "" }
+  },
+  "importName": "createOpenAIAgent",
+  "instanceTemplate": "createOpenAIAgent(config.agent ?? { name: \"agent-openai\" })",
+  "phase": 5
+}

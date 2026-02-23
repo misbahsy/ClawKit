@@ -1,0 +1,14 @@
+{
+  "name": "tool-memory-write",
+  "category": "tools",
+  "description": "Save content to agent long-term memory with tags. Delegates to runtime memory module.",
+  "npmDependencies": {},
+  "suggests": ["tool-memory-read"],
+  "suggestReason": {
+    "tool-memory-read": "Search previously written memories."
+  },
+  "configSchema": {},
+  "importName": "createMemoryWriteTool",
+  "instanceTemplate": "createMemoryWriteTool({})",
+  "phase": 5
+}

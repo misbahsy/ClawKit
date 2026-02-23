@@ -1,0 +1,21 @@
+{
+  "name": "irc",
+  "category": "channels",
+  "description": "IRC channel via irc-framework. Classic protocol support. Multi-channel join. TLS. Private and channel messages.",
+  "npmDependencies": {
+    "irc-framework": "^4.0.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "server": { "type": "string", "default": "" },
+    "port": { "type": "number", "default": 6667 },
+    "nickname": { "type": "string", "default": "" },
+    "channels": { "type": "array", "default": [] },
+    "tls": { "type": "boolean", "default": false },
+    "password": { "type": "string" }
+  },
+  "importName": "createIrcChannel",
+  "instanceTemplate": "createIrcChannel(config.channels?.irc ?? {})",
+  "phase": 6
+}

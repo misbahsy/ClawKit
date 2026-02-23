@@ -1,0 +1,17 @@
+{
+  "name": "tool-delegate",
+  "category": "tools",
+  "description": "Delegate tasks to other agent runtimes. Routes via sendMessage or context.agent.",
+  "npmDependencies": {},
+  "suggests": ["tool-spawn-agent"],
+  "suggestReason": {
+    "tool-spawn-agent": "Spawn local sub-agents instead of delegating to external runtimes."
+  },
+  "configSchema": {
+    "defaultRuntime": { "type": "string", "description": "Default target runtime" },
+    "defaultModel": { "type": "string", "description": "Default model for delegated tasks" }
+  },
+  "importName": "createDelegateTool",
+  "instanceTemplate": "createDelegateTool({})",
+  "phase": 5
+}

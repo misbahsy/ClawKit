@@ -1,0 +1,19 @@
+{
+  "name": "sandbox-landlock",
+  "category": "sandbox",
+  "description": "Linux Landlock LSM sandbox. Kernel-enforced filesystem access control. Restricts paths before execution. Zero deps.",
+  "npmDependencies": {},
+  "suggests": ["sandbox-nsjail", "sandbox-docker"],
+  "suggestReason": {
+    "sandbox-nsjail": "Namespace jail provides broader isolation including PID/network.",
+    "sandbox-docker": "Docker provides full container isolation with image management."
+  },
+  "configSchema": {
+    "allowedPaths": { "type": "array", "default": ["/usr", "/lib", "/tmp"] },
+    "denyNetwork": { "type": "boolean", "default": true },
+    "timeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createLandlockSandbox",
+  "instanceTemplate": "createLandlockSandbox(config.sandbox ?? { name: \"sandbox-landlock\" })",
+  "phase": 7
+}

@@ -1,0 +1,21 @@
+{
+  "name": "ipc-grpc",
+  "category": "ipc",
+  "description": "gRPC high-performance binary IPC. Protobuf serialization, bidirectional messaging.",
+  "npmDependencies": {
+    "@grpc/grpc-js": "^1.0.0",
+    "@grpc/proto-loader": "^0.7.0"
+  },
+  "suggests": ["ipc-websocket"],
+  "suggestReason": {
+    "ipc-websocket": "WebSocket alternative when gRPC is overkill."
+  },
+  "configSchema": {
+    "port": { "type": "number", "default": 50051 },
+    "protoPath": { "type": "string" },
+    "requestTimeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createGrpcIPC",
+  "instanceTemplate": "createGrpcIPC(config.ipc ?? { name: \"ipc-grpc\" })",
+  "phase": 7
+}

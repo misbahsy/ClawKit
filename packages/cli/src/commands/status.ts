@@ -2,14 +2,11 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import chalk from "chalk";
 import { readRegistry, readComponentMeta } from "../utils/registry.js";
+import { validateProjectDir } from "../utils/claude-md.js";
 
 export async function statusCommand(): Promise<void> {
   const projectDir = process.cwd();
-
-  if (!existsSync(resolve(projectDir, "clawkit.config.ts"))) {
-    console.error(chalk.red("Not a ClawKit project. Run `clawkit init` first."));
-    process.exit(1);
-  }
+  validateProjectDir(projectDir);
 
   const registry = readRegistry();
   const installed: Array<{ name: string; category: string; description: string }> = [];

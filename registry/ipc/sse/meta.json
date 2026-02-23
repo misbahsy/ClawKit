@@ -1,0 +1,18 @@
+{
+  "name": "ipc-sse",
+  "category": "ipc",
+  "description": "Server-Sent Events IPC. One-way streaming to clients, POST-based receive. HTTP-native, zero deps.",
+  "npmDependencies": {},
+  "suggests": ["ipc-websocket", "ipc-http"],
+  "suggestReason": {
+    "ipc-websocket": "Bidirectional alternative when SSE one-way streaming is insufficient.",
+    "ipc-http": "Simpler HTTP-based IPC for request/response patterns."
+  },
+  "configSchema": {
+    "port": { "type": "number", "default": 9801 },
+    "requestTimeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createSSEIPC",
+  "instanceTemplate": "createSSEIPC(config.ipc ?? { name: \"ipc-sse\" })",
+  "phase": 7
+}

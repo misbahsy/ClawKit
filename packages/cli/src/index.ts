@@ -5,6 +5,7 @@ import { addCommand } from "./commands/add.js";
 import { removeCommand } from "./commands/remove.js";
 import { listCommand } from "./commands/list.js";
 import { statusCommand } from "./commands/status.js";
+import { createComponentCommand } from "./commands/create-component.js";
 
 const program = new Command();
 
@@ -51,6 +52,15 @@ program
   .description("Show installed components in the current project")
   .action(async () => {
     await statusCommand();
+  });
+
+program
+  .command("create-component")
+  .argument("<name>", "Component name")
+  .requiredOption("-c, --category <category>", "Component category (channels, agents, memory, tools, queue, prompt, sandbox, scheduler, skills, ipc)")
+  .description("Scaffold a new registry component")
+  .action(async (name: string, options: { category: string }) => {
+    await createComponentCommand(name, options);
   });
 
 program.parse();

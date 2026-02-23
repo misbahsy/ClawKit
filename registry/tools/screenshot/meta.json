@@ -1,0 +1,20 @@
+{
+  "name": "tool-screenshot",
+  "category": "tools",
+  "description": "Screenshot URLs with configurable viewport. Returns base64 media attachment.",
+  "npmDependencies": {
+    "puppeteer": "^23.0.0"
+  },
+  "suggests": ["tool-browser"],
+  "suggestReason": {
+    "tool-browser": "Full browser automation for interactive workflows beyond screenshots."
+  },
+  "configSchema": {
+    "defaultWidth": { "type": "number", "default": 1280 },
+    "defaultHeight": { "type": "number", "default": 720 },
+    "timeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createScreenshotTool",
+  "instanceTemplate": "createScreenshotTool({})",
+  "phase": 7
+}

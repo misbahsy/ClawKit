@@ -1,0 +1,20 @@
+{
+  "name": "slack",
+  "category": "channels",
+  "description": "Slack channel via @slack/bolt. Workspace install. Socket mode. Threads. File uploads.",
+  "npmDependencies": {
+    "@slack/bolt": "^4.0.0"
+  },
+  "suggests": ["queue-per-group"],
+  "suggestReason": {
+    "queue-per-group": "Per-group queue handles concurrent Slack channel messages gracefully."
+  },
+  "configSchema": {
+    "botToken": { "type": "string", "default": "" },
+    "appToken": { "type": "string", "default": "" },
+    "signingSecret": { "type": "string", "default": "" }
+  },
+  "importName": "createSlackChannel",
+  "instanceTemplate": "createSlackChannel(config.channels?.slack ?? {})",
+  "phase": 5
+}

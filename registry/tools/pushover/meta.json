@@ -1,0 +1,16 @@
+{
+  "name": "tool-pushover",
+  "category": "tools",
+  "description": "Push notifications via Pushover API. Supports priority levels, device targeting, emergency alerts.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "userKey": { "type": "string", "required": true },
+    "apiToken": { "type": "string", "required": true },
+    "defaultDevice": { "type": "string" }
+  },
+  "importName": "createPushoverTool",
+  "instanceTemplate": "createPushoverTool({ userKey: process.env.PUSHOVER_USER_KEY!, apiToken: process.env.PUSHOVER_API_TOKEN! })",
+  "phase": 7
+}

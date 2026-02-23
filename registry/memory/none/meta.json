@@ -1,0 +1,14 @@
+{
+  "name": "memory-none",
+  "category": "memory",
+  "description": "Ephemeral in-memory storage. No persistence. Fresh every session. Lightest memory option.",
+  "npmDependencies": {},
+  "suggests": ["memory-sqlite"],
+  "suggestReason": {
+    "memory-sqlite": "SQLite memory provides persistence across restarts with FTS5 search."
+  },
+  "configSchema": {},
+  "importName": "createNoneMemory",
+  "instanceTemplate": "createNoneMemory(config.memory ?? { name: \"memory-none\" })",
+  "phase": 5
+}

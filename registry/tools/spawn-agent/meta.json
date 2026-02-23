@@ -1,0 +1,17 @@
+{
+  "name": "tool-spawn-agent",
+  "category": "tools",
+  "description": "Spawn sub-agents for parallel task execution. Uses context.agent runtime hook.",
+  "npmDependencies": {},
+  "suggests": ["tool-delegate"],
+  "suggestReason": {
+    "tool-delegate": "Delegate to external runtimes instead of spawning sub-agents."
+  },
+  "configSchema": {
+    "defaultModel": { "type": "string", "description": "Default model for spawned agents" },
+    "defaultMaxTurns": { "type": "number", "default": 5 }
+  },
+  "importName": "createSpawnAgentTool",
+  "instanceTemplate": "createSpawnAgentTool({})",
+  "phase": 5
+}

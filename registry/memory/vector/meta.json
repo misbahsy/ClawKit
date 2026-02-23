@@ -1,0 +1,19 @@
+{
+  "name": "memory-vector",
+  "category": "memory",
+  "description": "Standalone vector search via Ollama embeddings. In-memory store with optional JSON persistence. Zero npm deps.",
+  "npmDependencies": {},
+  "suggests": ["memory-hybrid-rrf", "memory-sqlite-hybrid"],
+  "suggestReason": {
+    "memory-hybrid-rrf": "Adds FTS5 keyword search alongside vector for hybrid retrieval.",
+    "memory-sqlite-hybrid": "SQLite-backed hybrid with weighted BM25 + cosine."
+  },
+  "configSchema": {
+    "embeddingEndpoint": { "type": "string", "default": "http://localhost:11434/api/embed" },
+    "embeddingModel": { "type": "string", "default": "nomic-embed-text" },
+    "dataDir": { "type": "string", "default": "./data/memory-vector" }
+  },
+  "importName": "createVectorMemory",
+  "instanceTemplate": "createVectorMemory(config.memory ?? { name: \"memory-vector\" })",
+  "phase": 7
+}

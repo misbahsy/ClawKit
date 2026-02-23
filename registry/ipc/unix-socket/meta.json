@@ -1,0 +1,17 @@
+{
+  "name": "ipc-unix-socket",
+  "category": "ipc",
+  "description": "Unix domain socket IPC. Fastest local IPC. JSON-line protocol, zero deps.",
+  "npmDependencies": {},
+  "suggests": ["ipc-stdio"],
+  "suggestReason": {
+    "ipc-stdio": "Stdio IPC for parent-child process communication."
+  },
+  "configSchema": {
+    "socketPath": { "type": "string", "default": "/tmp/clawkit.sock" },
+    "requestTimeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createUnixSocketIPC",
+  "instanceTemplate": "createUnixSocketIPC(config.ipc ?? { name: \"ipc-unix-socket\" })",
+  "phase": 7
+}

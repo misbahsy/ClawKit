@@ -1,0 +1,22 @@
+{
+  "name": "ipc-mcp-transport",
+  "category": "ipc",
+  "description": "MCP protocol transport layer. stdio + streamable-http. Wraps MCP Client SDK for IPC.",
+  "npmDependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "suggests": ["skills-mcp-client", "ipc-stdio"],
+  "suggestReason": {
+    "skills-mcp-client": "MCP client skill for loading MCP server tools.",
+    "ipc-stdio": "Low-level stdio IPC when MCP protocol is not needed."
+  },
+  "configSchema": {
+    "transport": { "type": "string", "enum": ["stdio", "streamable-http"], "required": true },
+    "command": { "type": "string" },
+    "url": { "type": "string" },
+    "requestTimeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createMCPTransportIPC",
+  "instanceTemplate": "createMCPTransportIPC(config.ipc ?? { transport: \"stdio\", command: \"npx\" })",
+  "phase": 7
+}

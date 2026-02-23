@@ -1,0 +1,17 @@
+{
+  "name": "prompt-dynamic",
+  "category": "prompt",
+  "description": "Conditional assembly: full/minimal/none modes. Token budget pruning. Dynamic tool pruning by topic.",
+  "npmDependencies": {},
+  "suggests": ["prompt-security-aware"],
+  "suggestReason": {
+    "prompt-security-aware": "Security-aware prompt adds injection defense on top of dynamic assembly."
+  },
+  "configSchema": {
+    "maxTokenEstimate": { "type": "number", "default": 4000 },
+    "defaultMode": { "type": "string", "default": "full" }
+  },
+  "importName": "createDynamicPrompt",
+  "instanceTemplate": "createDynamicPrompt(config.prompt ?? { name: \"prompt-dynamic\" })",
+  "phase": 4
+}

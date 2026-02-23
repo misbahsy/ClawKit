@@ -1,0 +1,17 @@
+{
+  "name": "webhook",
+  "category": "channels",
+  "description": "Generic HTTP receiver channel. POST to /message creates IncomingMessage. GET /response/:id retrieves replies.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "port": { "type": "number", "default": 0 },
+    "host": { "type": "string", "default": "127.0.0.1" },
+    "path": { "type": "string", "default": "/message" },
+    "secret": { "type": "string" }
+  },
+  "importName": "createWebhookChannel",
+  "instanceTemplate": "createWebhookChannel(config.channels?.webhook ?? {})",
+  "phase": 5
+}

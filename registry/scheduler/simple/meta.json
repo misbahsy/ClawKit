@@ -1,0 +1,12 @@
+{
+  "name": "scheduler-simple",
+  "category": "scheduler",
+  "description": "setInterval + setTimeout only. No cron. Zero dependencies. Lightest scheduler.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {},
+  "importName": "createSimpleScheduler",
+  "instanceTemplate": "createSimpleScheduler(config.scheduler ?? { name: \"scheduler-simple\" })",
+  "phase": 5
+}

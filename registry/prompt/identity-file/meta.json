@@ -1,0 +1,14 @@
+{
+  "name": "prompt-identity-file",
+  "category": "prompt",
+  "description": "Reads AIEOS JSON or markdown identity files. Personality traits, communication styles.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "identityFile": { "type": "string" }
+  },
+  "importName": "createIdentityFilePrompt",
+  "instanceTemplate": "createIdentityFilePrompt(config.prompt ?? { name: \"prompt-identity-file\" })",
+  "phase": 5
+}

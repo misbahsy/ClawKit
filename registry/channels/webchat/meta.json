@@ -1,0 +1,17 @@
+{
+  "name": "webchat",
+  "category": "channels",
+  "description": "Browser chat UI via WebSocket. Serves static HTML chat page. Real-time bidirectional messaging.",
+  "npmDependencies": {
+    "ws": "^8.0.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "port": { "type": "number", "default": 3100 },
+    "host": { "type": "string", "default": "0.0.0.0" }
+  },
+  "importName": "createWebchatChannel",
+  "instanceTemplate": "createWebchatChannel(config.channels?.webchat ?? {})",
+  "phase": 5
+}

@@ -1,0 +1,18 @@
+{
+  "name": "sandbox-docker-orchestrator",
+  "category": "sandbox",
+  "description": "Orchestrator/worker pattern. Per-job containers with unique tokens. Read-only root. Network proxy.",
+  "npmDependencies": { "dockerode": "^4.0.0" },
+  "suggests": ["sandbox-docker"],
+  "suggestReason": { "sandbox-docker": "Simpler single-container Docker sandbox without orchestration." },
+  "configSchema": {
+    "image": { "type": "string", "default": "node:20-slim" },
+    "networkMode": { "type": "string", "default": "none" },
+    "readOnlyRoot": { "type": "boolean", "default": true },
+    "timeout": { "type": "number", "default": 30000 },
+    "memoryLimit": { "type": "number", "default": 536870912 }
+  },
+  "importName": "createDockerOrchestratorSandbox",
+  "instanceTemplate": "createDockerOrchestratorSandbox(config.sandbox ?? { name: \"sandbox-docker-orchestrator\" })",
+  "phase": 7
+}

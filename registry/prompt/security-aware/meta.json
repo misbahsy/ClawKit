@@ -1,0 +1,19 @@
+{
+  "name": "prompt-security-aware",
+  "category": "prompt",
+  "description": "Security-hardened prompt builder. Cognitive inoculation, priority hierarchy, anti-injection defense.",
+  "npmDependencies": {},
+  "suggests": ["prompt-dynamic"],
+  "suggestReason": {
+    "prompt-dynamic": "Dynamic prompt provides the base assembly this component extends with security."
+  },
+  "configSchema": {
+    "maxTokenEstimate": { "type": "number", "default": 4000 },
+    "defaultMode": { "type": "string", "default": "full" },
+    "enableInoculation": { "type": "boolean", "default": true },
+    "ownerInstructions": { "type": "string", "default": "" }
+  },
+  "importName": "createSecurityAwarePrompt",
+  "instanceTemplate": "createSecurityAwarePrompt(config.prompt ?? { name: \"prompt-security-aware\" })",
+  "phase": 4
+}

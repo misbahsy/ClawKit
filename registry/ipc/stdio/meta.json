@@ -1,0 +1,14 @@
+{
+  "name": "ipc-stdio",
+  "category": "ipc",
+  "description": "stdin/stdout JSON line IPC. Child process communication. MCP stdio transport compatible.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "requestTimeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createStdioIPC",
+  "instanceTemplate": "createStdioIPC(config.ipc ?? { name: \"ipc-stdio\" })",
+  "phase": 5
+}

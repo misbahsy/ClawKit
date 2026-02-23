@@ -1,0 +1,17 @@
+{
+  "name": "dingtalk",
+  "category": "channels",
+  "description": "DingTalk channel via robot webhook API. HMAC-SHA256 signed requests. Text and markdown messages. Event-driven inbound.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "accessToken": { "type": "string", "default": "" },
+    "secret": { "type": "string", "default": "" },
+    "agentId": { "type": "string", "default": "" },
+    "webhookUrl": { "type": "string", "default": "" }
+  },
+  "importName": "createDingTalkChannel",
+  "instanceTemplate": "createDingTalkChannel(config.channels?.dingtalk ?? {})",
+  "phase": 6
+}

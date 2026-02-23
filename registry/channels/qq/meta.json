@@ -1,0 +1,16 @@
+{
+  "name": "qq",
+  "category": "channels",
+  "description": "QQ messaging via go-cqhttp HTTP bridge. Polls /get_latest_messages for inbound. POST /send_msg for outbound. CQ code media.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "httpUrl": { "type": "string", "default": "http://localhost:5700" },
+    "accessToken": { "type": "string", "default": "" },
+    "pollInterval": { "type": "number", "default": 3000 }
+  },
+  "importName": "createQQChannel",
+  "instanceTemplate": "createQQChannel(config.channels?.qq ?? {})",
+  "phase": 6
+}

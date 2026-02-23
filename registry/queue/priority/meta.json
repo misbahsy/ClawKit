@@ -1,0 +1,17 @@
+{
+  "name": "queue-priority",
+  "category": "queue",
+  "description": "Priority queue with configurable priority per channel/sender. Retry with exponential backoff. Dead letter queue.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "concurrency": { "type": "number", "default": 1 },
+    "maxRetries": { "type": "number", "default": 3 },
+    "maxBackoff": { "type": "number", "default": 30000 },
+    "priorityMap": { "type": "object", "default": {} }
+  },
+  "importName": "createPriorityQueue",
+  "instanceTemplate": "createPriorityQueue(config.queue ?? { name: \"queue-priority\" })",
+  "phase": 5
+}

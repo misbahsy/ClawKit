@@ -1,0 +1,20 @@
+{
+  "name": "sandbox-nsjail",
+  "category": "sandbox",
+  "description": "Linux namespace jail sandbox. Lighter than Docker. Uses nsjail binary via child_process. Zero deps.",
+  "npmDependencies": {},
+  "suggests": ["sandbox-docker", "sandbox-landlock"],
+  "suggestReason": {
+    "sandbox-docker": "Docker provides broader ecosystem and image management.",
+    "sandbox-landlock": "Landlock is kernel-enforced filesystem-only isolation, even lighter."
+  },
+  "configSchema": {
+    "nsjailPath": { "type": "string", "default": "/usr/bin/nsjail" },
+    "memoryLimit": { "type": "number", "default": 536870912 },
+    "timeLimit": { "type": "number", "default": 30 },
+    "networkAccess": { "type": "boolean", "default": false }
+  },
+  "importName": "createNsjailSandbox",
+  "instanceTemplate": "createNsjailSandbox(config.sandbox ?? { name: \"sandbox-nsjail\" })",
+  "phase": 7
+}

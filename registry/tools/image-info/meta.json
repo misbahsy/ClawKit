@@ -1,0 +1,16 @@
+{
+  "name": "tool-image-info",
+  "category": "tools",
+  "description": "Image analysis: dimensions, format, color space, EXIF data, color statistics.",
+  "npmDependencies": {
+    "sharp": "^0.33.0"
+  },
+  "suggests": ["tool-file-read"],
+  "suggestReason": {
+    "tool-file-read": "Read non-image files alongside image analysis."
+  },
+  "configSchema": {},
+  "importName": "createImageInfoTool",
+  "instanceTemplate": "createImageInfoTool({})",
+  "phase": 7
+}

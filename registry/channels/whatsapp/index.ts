@@ -25,11 +25,10 @@ export default function createWhatsAppChannel(config: WhatsAppChannelConfig): Ch
 
   function markdownToWhatsApp(text: string): string {
     return text
-      .replace(/\*\*(.+?)\*\*/g, "*$1*")       // bold
-      .replace(/(?<!\*)__(.+?)__(?!\*)/g, "_$1_") // italic
-      .replace(/~~(.+?)~~/g, "~$1~")             // strikethrough
-      .replace(/```[\s\S]*?```/g, (m) => m)      // preserve code blocks
-      .replace(/(?<!`)`([^`]+)`(?!`)/g, "```$1```"); // inline code
+      .replace(/\*\*(.+?)\*\*/g, "*$1*")
+      .replace(/(?<!\*)__(.+?)__(?!\*)/g, "_$1_")
+      .replace(/~~(.+?)~~/g, "~$1~")
+      .replace(/(?<!`)`([^`]+)`(?!`)/g, "```$1```");
   }
 
   async function connectSocket(): Promise<void> {

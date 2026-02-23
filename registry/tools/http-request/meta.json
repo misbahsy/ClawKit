@@ -1,0 +1,17 @@
+{
+  "name": "tool-http-request",
+  "category": "tools",
+  "description": "Generic HTTP client. GET/POST/PUT/PATCH/DELETE with headers, body, bearer/basic auth.",
+  "npmDependencies": {},
+  "suggests": ["tool-web-fetch"],
+  "suggestReason": {
+    "tool-web-fetch": "Web fetch extracts readable text from HTML pages."
+  },
+  "configSchema": {
+    "timeout": { "type": "number", "default": 30000 },
+    "maxResponseLength": { "type": "number", "default": 100000 }
+  },
+  "importName": "createHttpRequestTool",
+  "instanceTemplate": "createHttpRequestTool({})",
+  "phase": 5
+}

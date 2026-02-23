@@ -1,0 +1,17 @@
+{
+  "name": "skills-clawhub",
+  "category": "skills",
+  "description": "Install and load skills from ClawHub registry. Downloads .md skill files. Checks required bins/env.",
+  "npmDependencies": {},
+  "suggests": ["skills-markdown"],
+  "suggestReason": {
+    "skills-markdown": "Markdown skills provides the same local scanning without ClawHub integration."
+  },
+  "configSchema": {
+    "skillsDir": { "type": "string", "default": "./workspace/skills" },
+    "registryUrl": { "type": "string", "default": "https://clawhub.dev/api/v1" }
+  },
+  "importName": "createClawHubSkills",
+  "instanceTemplate": "createClawHubSkills(config.skills ?? { skillsDir: \"./workspace/skills\" })",
+  "phase": 4
+}

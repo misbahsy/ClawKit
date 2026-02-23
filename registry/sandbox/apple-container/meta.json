@@ -1,0 +1,16 @@
+{
+  "name": "sandbox-apple-container",
+  "category": "sandbox",
+  "description": "Apple Container framework sandbox (macOS Sequoia+). Lightweight VMs via container CLI. Zero deps.",
+  "npmDependencies": {},
+  "suggests": ["sandbox-docker"],
+  "suggestReason": { "sandbox-docker": "Docker provides cross-platform container isolation." },
+  "configSchema": {
+    "image": { "type": "string", "default": "default" },
+    "memoryLimit": { "type": "number", "default": 536870912 },
+    "timeout": { "type": "number", "default": 30000 }
+  },
+  "importName": "createAppleContainerSandbox",
+  "instanceTemplate": "createAppleContainerSandbox(config.sandbox ?? { name: \"sandbox-apple-container\" })",
+  "phase": 7
+}

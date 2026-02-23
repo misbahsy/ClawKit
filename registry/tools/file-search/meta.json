@@ -1,0 +1,17 @@
+{
+  "name": "tool-file-search",
+  "category": "tools",
+  "description": "Glob/regex file search across workspace. Recursive directory walk, pattern matching, result limiting.",
+  "npmDependencies": {},
+  "suggests": ["tool-file-read", "tool-file-edit"],
+  "suggestReason": {
+    "tool-file-read": "Search for files then read their contents.",
+    "tool-file-edit": "Search for files then edit them."
+  },
+  "configSchema": {
+    "defaultMaxResults": { "type": "number", "default": 100 }
+  },
+  "importName": "createFileSearchTool",
+  "instanceTemplate": "createFileSearchTool({ workspaceDir: config.aliases.workspace })",
+  "phase": 7
+}

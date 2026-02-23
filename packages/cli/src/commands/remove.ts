@@ -2,17 +2,13 @@ import { existsSync, readFileSync, writeFileSync, rmSync } from "node:fs";
 import { resolve } from "node:path";
 import chalk from "chalk";
 import ora from "ora";
-import { readRegistry, readComponentMeta, getInstalledComponents } from "../utils/registry.js";
+import { readRegistry, readComponentMeta } from "../utils/registry.js";
 import { removeComponentFromEntry } from "../utils/entry.js";
-import { generateClaudeMd, preserveUserNotes } from "../utils/claude-md.js";
+import { validateProjectDir, regenerateClaudeMd } from "../utils/claude-md.js";
 
 export async function removeCommand(componentName: string): Promise<void> {
   const projectDir = process.cwd();
-
-  if (!existsSync(resolve(projectDir, "clawkit.config.ts"))) {
-    console.error(chalk.red("Not a ClawKit project. Run `clawkit init` first."));
-    process.exit(1);
-  }
+  validateProjectDir(projectDir);
 
   const registry = readRegistry();
   const entry = registry[componentName];
@@ -45,21 +41,7 @@ export async function removeCommand(componentName: string): Promise<void> {
       writeFileSync(configPath, content, "utf-8");
     }
 
-    const installed = getInstalledComponents(projectDir);
-    const metas = installed.map((n) => {
-      try { return readComponentMeta(n); } catch { return null; }
-    }).filter((m): m is NonNullable<typeof m> => m !== null);
-
-    const claudeMdPath = resolve(projectDir, "CLAUDE.md");
-    const existingContent = existsSync(claudeMdPath) ? readFileSync(claudeMdPath, "utf-8") : "";
-    const configContent = readFileSync(configPath, "utf-8");
-    const nameMatch = configContent.match(/name:\s*["']([^"']+)["']/);
-    const projectName = nameMatch?.[1] ?? "agent";
-    let newContent = generateClaudeMd(projectName, metas);
-    if (existingContent) {
-      newContent = preserveUserNotes(existingContent, newContent);
-    }
-    writeFileSync(claudeMdPath, newContent, "utf-8");
+    regenerateClaudeMd(projectDir);
 
     spinner.succeed(`Removed ${chalk.red(componentName)}`);
   } catch (err: any) {

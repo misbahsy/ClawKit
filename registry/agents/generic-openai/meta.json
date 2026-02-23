@@ -1,0 +1,17 @@
+{
+  "name": "agent-generic-openai",
+  "category": "agents",
+  "description": "Any OpenAI-compatible endpoint. Configurable base URL. Uses fetch only. Streaming SSE. Tool/function calling.",
+  "npmDependencies": {},
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "model": { "type": "string", "default": "gpt-4o" },
+    "maxTokens": { "type": "number", "default": 4096 },
+    "apiKey": { "type": "string", "default": "" },
+    "baseUrl": { "type": "string", "default": "http://localhost:11434" }
+  },
+  "importName": "createGenericOpenAIAgent",
+  "instanceTemplate": "createGenericOpenAIAgent(config.agent ?? { name: \"agent-generic-openai\" })",
+  "phase": 5
+}

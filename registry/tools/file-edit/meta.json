@@ -1,0 +1,17 @@
+{
+  "name": "tool-file-edit",
+  "category": "tools",
+  "description": "Edit files via str_replace. Finds a unique string and replaces it. Path traversal protection.",
+  "npmDependencies": {},
+  "suggests": ["tool-file-read", "tool-file-write"],
+  "suggestReason": {
+    "tool-file-read": "Read files before editing to verify content.",
+    "tool-file-write": "Write tool complements edit for full file creation."
+  },
+  "configSchema": {
+    "workspaceDir": { "type": "string", "description": "Default workspace directory" }
+  },
+  "importName": "createFileEditTool",
+  "instanceTemplate": "createFileEditTool({ workspaceDir: config.aliases.workspace })",
+  "phase": 5
+}

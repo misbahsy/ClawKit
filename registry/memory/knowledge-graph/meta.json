@@ -1,0 +1,17 @@
+{
+  "name": "memory-knowledge-graph",
+  "category": "memory",
+  "description": "Long-term structured knowledge graph. Entities, relationships, and facts with heuristic extraction. Zero deps.",
+  "npmDependencies": {},
+  "suggests": ["memory-vector", "memory-json"],
+  "suggestReason": {
+    "memory-vector": "Vector-based semantic search for unstructured recall.",
+    "memory-json": "Simple JSON file memory for basic use cases."
+  },
+  "configSchema": {
+    "dataDir": { "type": "string", "default": "./data/knowledge-graph" }
+  },
+  "importName": "createKnowledgeGraphMemory",
+  "instanceTemplate": "createKnowledgeGraphMemory(config.memory ?? { name: \"memory-knowledge-graph\" })",
+  "phase": 7
+}

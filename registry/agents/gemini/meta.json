@@ -1,0 +1,18 @@
+{
+  "name": "agent-gemini",
+  "category": "agents",
+  "description": "Google Gemini API. Streaming generateContent. Tool/function calling. Long context window.",
+  "npmDependencies": {
+    "@google/generative-ai": "^0.21.0"
+  },
+  "suggests": [],
+  "suggestReason": {},
+  "configSchema": {
+    "model": { "type": "string", "default": "gemini-pro" },
+    "maxTokens": { "type": "number", "default": 8192 },
+    "apiKey": { "type": "string", "default": "" }
+  },
+  "importName": "createGeminiAgent",
+  "instanceTemplate": "createGeminiAgent(config.agent ?? { name: \"agent-gemini\" })",
+  "phase": 6
+}

@@ -1,0 +1,19 @@
+{
+  "name": "agent-pi-embedded",
+  "category": "agents",
+  "description": "Pi embedded agent runtime. Session management, compaction, auth rotation, model failover.",
+  "npmDependencies": {},
+  "suggests": ["agent-anthropic"],
+  "suggestReason": { "agent-anthropic": "Direct Anthropic API as alternative to Pi runtime." },
+  "configSchema": {
+    "model": { "type": "string", "default": "pi-default" },
+    "apiKey": { "type": "string" },
+    "baseUrl": { "type": "string", "default": "http://localhost:8080" },
+    "maxTokens": { "type": "number", "default": 4096 },
+    "sessionManagement": { "type": "boolean", "default": true },
+    "compactionThreshold": { "type": "number", "default": 100 }
+  },
+  "importName": "createPiEmbeddedAgent",
+  "instanceTemplate": "createPiEmbeddedAgent(config.agent ?? { name: \"agent-pi-embedded\" })",
+  "phase": 4
+}
