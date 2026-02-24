@@ -17,22 +17,7 @@ import {
 } from "../utils/scaffold.js";
 import { generateEntryPoint } from "../utils/entry.js";
 import { generateClaudeMd } from "../utils/claude-md.js";
-
-const DEFAULT_COMPONENTS = [
-  "cli",
-  "agent-anthropic",
-  "memory-sqlite",
-  "queue-simple",
-  "prompt-simple",
-  "sandbox-none",
-  "tool-bash",
-  "tool-file-read",
-  "tool-file-write",
-];
-
-const PRESETS: Record<string, string[]> = {
-  minimal: DEFAULT_COMPONENTS,
-};
+import { PRESETS, DEFAULT_PRESET, getPreset, listPresets } from "../presets.js";
 
 export async function initCommand(name: string, options: { template?: string }): Promise<void> {
   const projectDir = resolve(process.cwd(), name);
@@ -53,9 +38,16 @@ export async function initCommand(name: string, options: { template?: string }):
   spinner.text = "Copying core runtime...";
   copyCore(projectDir);
 
-  const componentNames = options.template && PRESETS[options.template]
-    ? PRESETS[options.template]
-    : DEFAULT_COMPONENTS;
+  const preset = options.template
+    ? getPreset(options.template)
+    : getPreset(DEFAULT_PRESET);
+
+  if (options.template && !preset) {
+    spinner.fail(chalk.red(`Unknown template "${options.template}". Available: ${listPresets().map(p => p.name).join(", ")}`));
+    process.exit(1);
+  }
+
+  const componentNames = preset!.components;
 
   const metas: ComponentMeta[] = [];
   spinner.text = "Copying components...";
@@ -121,9 +113,13 @@ export async function initCommand(name: string, options: { template?: string }):
     "utf-8"
   );
 
+  const envLines = preset!.envKeys.map((key) => `${key}=your-${key.toLowerCase().replace(/_/g, "-")}-here`);
+  if (envLines.length === 0) {
+    envLines.push("# No API keys required for this preset");
+  }
   writeFileSync(
     resolve(projectDir, ".env.example"),
-    `ANTHROPIC_API_KEY=sk-ant-...\n`,
+    envLines.join("\n") + "\n",
     "utf-8"
   );
 
@@ -134,11 +130,13 @@ export async function initCommand(name: string, options: { template?: string }):
     spinner.warn("npm install failed — run it manually");
   }
 
-  spinner.succeed(chalk.green(`Created ${name}!`));
+  spinner.succeed(chalk.green(`Created ${name}! (preset: ${preset!.name})`));
 
   console.log("");
   console.log(`  ${chalk.cyan("cd")} ${name}`);
-  console.log(`  ${chalk.cyan("export")} ANTHROPIC_API_KEY=sk-ant-...`);
+  for (const key of preset!.envKeys) {
+    console.log(`  ${chalk.cyan("export")} ${key}=...`);
+  }
   console.log(`  ${chalk.cyan("npm")} start`);
   console.log("");
 }

@@ -8,6 +8,10 @@
   "scripts": {
     "build": "npm run build --workspace=packages/cli",
     "test": "vitest run",
+    "test:smoke": "vitest run --config vitest.smoke.config.ts",
+    "test:agents": "vitest run --config vitest.smoke.config.ts tests/smoke/agents.smoke.test.ts",
+    "test:channels": "vitest run --config vitest.smoke.config.ts tests/smoke/channels.connectivity.test.ts",
+    "test:all": "vitest run && vitest run --config vitest.smoke.config.ts",
     "dev": "npm run dev --workspace=packages/cli"
   },
   "devDependencies": {
