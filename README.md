@@ -4,9 +4,11 @@ A composable framework for building AI agents. Pick an LLM, wire up tools, plug 
 
 ClawKit treats AI agents like LEGO — every piece (model runtime, memory backend, tools, channels, queues) is a swappable component. Mix and match 104 components across 10 categories to build anything from a one-file CLI bot to a multi-channel enterprise agent.
 
-```
-npm install -g clawkit
-clawkit init my-agent --template minimal
+```bash
+git clone https://github.com/misbahsy/ClawKit.git
+cd ClawKit
+npm install && npm run build
+npx clawkit init my-agent --template minimal
 cd my-agent && npm start
 ```
 
@@ -26,26 +28,34 @@ Most agent frameworks lock you into one LLM provider, one way of doing memory, o
 
 ## Quick Start
 
-### 1. Scaffold a project
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/misbahsy/ClawKit.git
+cd ClawKit
+npm install && npm run build
+```
+
+### 2. Scaffold a project
 
 ```bash
 # Anthropic-powered agent (needs ANTHROPIC_API_KEY)
-clawkit init my-agent
+npx clawkit init my-agent
 
 # Fully local with Ollama (no API keys)
-clawkit init my-agent --template local-ollama
+npx clawkit init my-agent --template local-ollama
 
 # OpenAI with extended dev tools
-clawkit init my-agent --template openai-full
+npx clawkit init my-agent --template openai-full
 ```
 
-### 2. Set your key
+### 3. Set your key
 
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-### 3. Run it
+### 4. Run it
 
 ```bash
 cd my-agent
@@ -63,7 +73,7 @@ You now have a working agent with CLI interface, SQLite memory, and shell/file t
 The smallest useful agent. CLI in, CLI out, remembers conversations.
 
 ```bash
-clawkit init nano --template minimal
+npx clawkit init nano --template minimal
 ```
 
 This gives you:
@@ -93,7 +103,7 @@ Keep responses under 3 sentences unless asked for more.
 ### The Local Bot (No API Keys)
 
 ```bash
-clawkit init local-bot --template local-ollama
+npx clawkit init local-bot --template local-ollama
 ```
 
 Uses Ollama running on your machine. No data leaves localhost. Just run `ollama serve` first.
@@ -101,13 +111,13 @@ Uses Ollama running on your machine. No data leaves localhost. Just run `ollama 
 ### The Coding Agent
 
 ```bash
-clawkit init coder --template deepseek-coder
+npx clawkit init coder --template deepseek-coder
 ```
 
 DeepSeek optimized for code, with file editing, git, and search tools. Or use OpenAI:
 
 ```bash
-clawkit init coder --template openai-full
+npx clawkit init coder --template openai-full
 ```
 
 This adds `tool-file-edit`, `tool-git`, `tool-web-fetch`, and `tool-web-search` on top of the basics.
@@ -115,7 +125,7 @@ This adds `tool-file-edit`, `tool-git`, `tool-web-fetch`, and `tool-web-search` 
 ### The Full Agent
 
 ```bash
-clawkit init beast --template full-stack
+npx clawkit init beast --template full-stack
 ```
 
 All 17 tools, hybrid memory (keyword + vector search with RRF fusion), and Claude. This is the kitchen sink — browser automation, screenshots, sub-agent spawning, delegation, scheduling, the works.
@@ -123,7 +133,7 @@ All 17 tools, hybrid memory (keyword + vector search with RRF fusion), and Claud
 ### The HTTP API Agent
 
 ```bash
-clawkit init api-bot --template webhook-api
+npx clawkit init api-bot --template webhook-api
 ```
 
 Exposes your agent as an HTTP endpoint. POST messages, GET responses. Useful for integrating with other systems:
@@ -277,19 +287,19 @@ External integrations: `skills-mcp-client` (Model Context Protocol servers), `sk
 ## Adding & Removing Components
 
 ```bash
-# Add a component
-clawkit add tool-git tool-web-search
+# Add a component (run from within the clawkit repo)
+npx clawkit add tool-git tool-web-search
 
 # Remove one
-clawkit remove tool-web-search
+npx clawkit remove tool-web-search
 
 # See what's available
-clawkit list
-clawkit list agents
-clawkit list tools
+npx clawkit list
+npx clawkit list agents
+npx clawkit list tools
 
 # See what's installed
-clawkit status
+npx clawkit status
 ```
 
 ---
@@ -431,7 +441,7 @@ interface Channel {
 Create a new tool with the CLI:
 
 ```bash
-clawkit create-component my-tool --category tools
+npx clawkit create-component my-tool --category tools
 ```
 
 Then implement it in `registry/tools/my-tool/index.ts`:
